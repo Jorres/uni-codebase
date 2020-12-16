@@ -1,0 +1,23 @@
+# Vim
+.*sw*
+
+data.sh
+
+# local build directories
+concurrent-test
+array-test
+crawler-test
+walk-test
+impler-test
+hello-test
+student-test
+bank-test
+result
+.idea
+_build/
+modules/
+
+# launch scripts
+run-concurrent.sh
+run-mapper.sh
+
