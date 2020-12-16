@@ -1,0 +1,63 @@
+Best height:  3 , best accuracy:  0.9994859933179131         Forest accuracy is  0.9971729632485222   
+Best height:  9 , best accuracy:  0.6458015267175573         Forest accuracy is  0.6122137404580152   
+Best height:  1 , best accuracy:  1.0                        Forest accuracy is  0.991321118611379    
+Best height:  5 , best accuracy:  0.9892173913043478         Forest accuracy is  0.9829565217391304   
+Best height:  1 , best accuracy:  0.9956709956709957         Forest accuracy is  0.9913419913419913   
+Best height:  3 , best accuracy:  0.9922737306843267         Forest accuracy is  0.9817880794701986   
+Best height:  3 , best accuracy:  0.9953488372093023         Forest accuracy is  0.9906976744186047   
+Best height:  2 , best accuracy:  0.997920997920998          Forest accuracy is  0.9937629937629938   
+Best height:  4 , best accuracy:  0.8137254901960784         Forest accuracy is  0.8235294117647058   
+Best height:  4 , best accuracy:  0.9935613682092556         Forest accuracy is  0.9943661971830986   
+Best height:  1 , best accuracy:  0.999195171026157          Forest accuracy is  0.9947686116700202   
+Best height:  8 , best accuracy:  0.8697726634858266         Forest accuracy is  0.8728599494807746   
+Best height:  7 , best accuracy:  0.618348623853211          Forest accuracy is  0.6568807339449542   
+Best height:  6 , best accuracy:  0.9606329602470088         Forest accuracy is  0.970281744500193    
+Best height:  1 , best accuracy:  1.0                        Forest accuracy is  0.9963963963963964   
+Best height:  1 , best accuracy:  1.0                        Forest accuracy is  0.9956386292834891   
+Best height:  7 , best accuracy:  0.8140703517587939         Forest accuracy is  0.8274706867671692   
+Best height:  5 , best accuracy:  0.9344750558451228         Forest accuracy is  0.9262844378257632   
+Best height:  7 , best accuracy:  0.808702175543886          Forest accuracy is  0.8424606151537885   
+Best height:  7 , best accuracy:  0.9698890649762282         Forest accuracy is  0.9698890649762282   
+Best height:  8 , best accuracy:  0.781864299302473          Forest accuracy is  0.8103994927076728   
+                                                                                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

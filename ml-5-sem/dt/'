@@ -1,0 +1,82 @@
+#include <iostream>
+#include <set>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+using calc = double;
+
+vector<node> tree;
+
+struct node {
+    node(const vector<int>& v) {
+        for (auto& elem : v) {
+            elems.insert(elem);
+        }
+
+        is_leaf = false;
+
+        which = -1;
+        b = 0;
+        to_sml = to_lrg = -1;
+    }
+
+    set<int> elems;
+
+    bool is_leaf;
+
+    int which;
+    calc b;
+    int to_sml, to_lrg;
+};
+
+void do_cut() {
+
+}
+
+void build_tree(int m, int k, int h, int n, const vector<vector<int>>& data, const vector<int>& ys, int curnode_id) {
+    const node& curnode = tree[curnode_id];
+
+    int best_prop;
+    int best_const;
+
+    for (int prop = 0; prop < m; prop++) { // select property
+        vector<pair<int, int>> b_prop;
+        for (auto const& id : curnode.elems) { // construct possible b's
+            bs.push_back(make_pair(data[id][prop], id));
+        }
+        sort(b_prop.begin(), b_prop.end()); // x_prop < b
+
+        for (auto const& p : b_prop) {
+            b = p.first;
+            id = p.second;
+        }
+    }
+
+
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    int m, k, h;
+    cin >> m >> k >> h;
+    int n;
+    cin >> n;
+    vector<vector<int>> data(n, vector<int>(m));
+    vector<int> ys(n);
+    vector<int> ids(n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> data[i][j];
+        }
+        cin >> ys[i];
+        ids[i] = i;
+    }
+
+    tree.resize(1 << 12);
+    tree[0] = node(ids);
+    build_tree(m, k, h, n, data, ys, 0);
+    // do_cut();
+}
