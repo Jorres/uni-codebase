@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcounted.a  CMakeFiles/counted.dir/counted.cpp.o CMakeFiles/counted.dir/fault_injection.cpp.o
+/usr/bin/ranlib libcounted.a

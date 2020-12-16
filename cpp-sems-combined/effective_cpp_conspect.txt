@@ -1,0 +1,309 @@
+Table of contents
+    Type deduction, keyword auto, keyword decltype
+    How to learn what compiler deduces
+    Why auto use is preferred
+
+    New traits of C++11 from C++98
+        Difference between { } and ( ) initialization
+        Usage of nullptr
+        Alias declarations vs typedef
+        Scoped vs unscoped enums
+        Deleted functions
+        Contextual keywords - override and final
+
+
+
+
+
+
+================================================================
+
+Type deduction (ankied)
+    - is an algorithm compiler uses for:
+        template functions
+        auto qualifiers
+        decltype
+
+                    ---===---
+
+template functions:
+
+template <typename T>
+void f((const)T(&/*/&&) t) { // <-- basically any signature looks like this pattern
+
+}
+
+f(expr);
+
+3 basic principles
+    1) if reference or pointer
+    2) if universal reference
+    3) if none of the above
+
+1) void f((const)T(&/*)) - is not passed by value, so constness must be preserved; T is deduced to be type from expr
+                           declaration without qualifiers, and ref or ptr is added on top
+
+2) void f((const)T&&) - universal reference. Compiler treats lvalues and rvalues differently. For lvalues this is identical to
+                        single reference, preserving const qualifier. For rvalues this is expected behaviour - rip the guts out.
+
+3) void f((const) T) - completely new object, free of any const/volatile restrictions which were put on the initial type
+================================================================
+
+auto keyword (ankied)
+    the main bomb-idea is the followong: auto keyword is like T, and adornments on auto
+    are just like adornments on argument inside function template:
+                   template<typename T>
+volatile auto& <=> void (const T&) {...
+
+with a single exception: std::initializer_list<T> behaviour:
+    auto a = { 1, 2, 3 } - auto -> std::initializer_list<int>, but
+    void f(T t) { ... }, when passed f({1, 2, 3}), will fail to compile. (no apparent reason according to Meyers)
+
+================================================================
+
+decltype keyword (ankied)
+
+imagine a template function whose return type is dependent on instant.
+
+auto f(vector<T> v, int pos) -> decltype(v[pos]) {
+    ...
+}
+
+for vector<int> this guy would return int&, for vector<bool> - bool (no reference, attention!)
+
+although author himself admits that's the only usage he ever heard about
+
+            How to get the idea of what type is compiler deducing?
+
+            template <typename T>
+            class TypeDetector;
+
+            {
+                ...
+                TypeDetector<decltype(var_of_undknown_type)>
+            }
+
+another possibility to learn a deduced compiler type is at runtime via typeid(obj).name()
+does not always work accurately, since in template functions deduced type may vary from type of the 
+expression-argument (stripped constness and referenceness), but generally lets you know.
+
+================================================================
+
+    auto gives you a lot of pleasure generally! (ankied)
+
+    1) auto values must be initialized, because expression  `auto name;` makes no sense - no information
+       for the compiler to deduce the type of `name` -> stops the scourge of uninitialized values like `int x;`
+    2) auto may be used when we simply don't know the type! like declaring a lambda function to pass it later
+       to the comparison:
+                auto cmp = [](const Widget& a, const Widget& b) {
+                    return a < b;
+                };
+       NB: std::function<> template is a storage to any callable object:
+                std::function<bool(const Widget&, const Widget&)> cmp;... but it is generally worse, since std::function is
+                another entity on top of existing
+
+    So in general, auto saves you from a lot of mistakes, eases refactoring the code, makes your code a bit more
+    portable (auto unsigned on 32-bit system would refactor into 64-bit system) and much easier to type.
+
+    one of auto pitfalls may be so called proxy objects, best with an example:
+        vector<bool> {
+            class reference { <-- proxy class
+
+            } 
+
+            std::vector<bool>::reference operator[]() {
+
+            }
+        }
+
+        auto some_var = get_properties(some_object)[5];
+        // you would end up with a dangling reference, but 
+        // your initial behaviour would be bool.
+        after the line with `properties` declaration any use of some_var is UB
+
+================================================================
+
+    Braces { } vs parentheses ( ) ! (ankied)
+        C++11 offered the idea of uniform initialization. Consider:
+
+        ...
+        private:                               // uncopyable objects:
+
+            int a(0); // won't compile         std::atomic<int> a(0); // would
+            int a = 0; // would                std::atomic<int> a = 0; // won't compile
+            int a { 0 }; // would              std::atomic<int> a { 0 }; // would
+        }
+
+        So it's easy to see why "uniform". Also, braced init has two more benefits:
+            --- prohibiting implicit narrowing conversions:
+                int pi {3.14}; // won't compile
+            --- immunity to the C++ rule about "if it looks like a function it is a function"
+                Worker w(); // is a function type, not object creation
+                Worker w{}; // constructor called indeed.
+
+        But braces are not always preferable. As one of their new possibilities is initializing objects like
+            std::vector v{ 1, 3, 5 };
+        sometimes braces might be interpreted as a std::initializer_list<>. Bad news for auto lovers!
+        Moreover, if constructor is being called and it is SOMEHOW possible to convert your arguments to
+        parameters in one of constructor's overloads with std::initializer_list<>, compiler will do everything
+        possible and impossible to do so. 
+
+        my_class(const std::initializer_list<long double>& list);
+        my_class(int a, bool b);
+
+        operator float();
+
+        my_class{5, true}; // guess what would be called? yes, bool converts to long double and... shame.
+
+        my_class a = another_class_instance; // guess what? it will be converted to float, float to long double
+                                             // and employ constructor from std::initializer_list!
+
+================================================================
+
+nullptr
+    Basically an ironclad case. Prior to C++98, NULL and 0 were used to interpret the null pointer, 
+    but the primary meaning of both is integral type (NULL is sometimes defined as 0 or 0L, but the 
+    essential thing - integral). So using them as null pointers was just a design desicion with nothing
+    better at hand. 
+
+    Problems with using such:
+        void f(int);
+        void f(void*);
+
+        f(0); // calls first
+        f(NULL); // also calls first, and if we add second overload `void f(bool)`, it won't compile at all
+
+    On the other hand, nullptr has the type std::nullptr_t, and it is the only entity having this type. Also, 
+    it is implicitly converted to all raw pointer types, and call `f(nullptr)` will undoubtedly call f(void*).
+
+    Another argument for nullptr is template type deduction. If we templatize void f(T), then type deduced 
+    for 0 and NULL will always be integral, thus we lose the possibility for implicit conversion int to ptr.
+    Nullptr does not suffer from that. 
+        
+    The only reason for 0 and NULL being interpreted as null pointer is A COMPILER CRUTCH!!!!
+    f(1) will not compile with f(void*);
+
+================================================================
+
+Alias vs typedef
+    Alias:
+        using u_un_map_ss = std::unique_ptr<std::unordered_map<std::string, std::string>>;
+    typedef:
+        typedef std::unique_ptr<std::unordered_map<std::string, std::string>> u_un_map_ss;
+    
+    Alias are preferred over typedefs. See why:
+
+    1) To even use a typedef in template construction, you mush wrap it somehow like this:
+
+                             template <typename T>
+                             struct templatedTypedef {
+                                 typedef my_sensible_class<T> type;
+                             }
+                         
+                             templatedTypedef<int>::type my_sensible_class_instance;
+
+    2) Declaring alias is easy:
+                             template <typename T>
+                             using my_sensible_class_type = my_sensible_class<T>;
+
+                             my_sensible_class_type<int> my_sensible_class_instance;
+                             // no cumbersome ::type!
+
+    And to dive a little bit into the concept of dependent types:
+    template <typename T>
+    class my_class {
+        templatedTypedef<T>::type my_sensible_class_instance; // won't compile!
+
+        // type of my_sensible_class_instance depends on T. Imagine than ::type is a data member 
+        // in one of the many instantiations of templatedTypedef. You might know that, but compiler 
+        // has to assume the worst, and you must specifically say it IS a type
+
+        typename templatedTypedef<T>::type my_sensible_class_instance;
+    };
+
+    On the other hand, alias declarations are just as easy, since they are ALWAYS type declarations and thus
+    always non-dependent.
+
+    template <typename T>
+    class my_class {
+        my_sensible_class_type<T> my_sensible_class_instance; 
+        // see? no ::type and thus no typename. 
+    }
+    
+================================================================
+
+Scoped vs unscoped enums
+    Generally, when you write { } and smth in the braces, they limit the visibility of names you declare
+    inside braces. Not the case for C++98 enums:
+
+    enum StringType { email, phone, address };
+    StringType type = phone; // see, visible!
+
+    C++ offers an alternative for UNSCOPED enums:
+    enum class StringType { email, phone, address };
+
+    // and now members of enum may only be addressed as:
+    StringType type = StringType::phone;
+                    ADVANTAGE 1: No namespace pollution.
+
+                                 ---====---
+
+    Furthermore, implicit conversions from unscoped enum members to integral types is possible:
+    if (type < 14.5) {
+        ... // weird but compiles
+    }
+
+    And scoped enums lack the implicit conversion and require you to define what you want:
+
+    if (static_cast<double>(type) < 14.5) {
+        ... // looks weird but at least programmer knows what he is doing
+    }
+                    ADVANTAGE 2: No implicit conversions.
+
+                                 ---====---
+
+    And third potential case is lack of ability to forward-declare unscoped enums. That's because
+    how they work: compiler must choose the type it uses to represent values os this enum, 
+    and he must know the range of values of enum to choose optimally.    
+
+    enum StringType; // fails
+
+    enum class StringType; // works, because by default it is int to be representing scoped enum's members.
+    
+    This limitation might be overcome, since both enums can be explicitly told their types:
+    enum StringType: std::size_t; // would work
+                    ADVANTAGE 3: Ease of forward declaration.
+
+================================================================
+    
+    use deleted functions!
+    1) in C++98 the only way to prohibit the usage of some functions was
+
+        class widget {
+            ...
+        private;
+            widget& operator=(const widget& rhs); // declaring, but not defining
+        }
+
+        so the compiler would fail to resolve it at link time.
+
+    2) usage of widget& `operator=(const widget& rhs) = delete;` is a technical
+       solution for what C++98 was trying to achieve. It's even better: you may 
+       deltee any function, not just member functions, for example to prevent 
+       the implicit conversion you don't want to happen. And again, templates as
+       always, it is simply impossible to declare a function as public for some 
+       instantiations, and private for others. 
+
+================================================================
+
+    use override when overriding!
+
+    overriding functions must be perfectly identical to their according base functions,
+    but it is so easy to miss a const qualifier, forget to declare virtual the base function 
+    and so on. But if you intended to override, you will propably use same name, and thus
+    if you declare `void f() override`, compiler will emit an error if matching failed. 
+
+    `final` keyword on function prevents it from being further overriden;
+                    on class prevents it from being base.
+
+================================================================

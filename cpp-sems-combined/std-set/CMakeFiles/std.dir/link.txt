@@ -1,0 +1,1 @@
+/usr/bin/c++  -pthread -fsanitize=address,undefined -Wall -std=c++14 -pedantic    CMakeFiles/std.dir/std.cpp.o  -o std libcounted.a gtest/libgtest.a 

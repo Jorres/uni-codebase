@@ -1,0 +1,56 @@
+UDP or TCP
+different ports
+http - 80
+https - 443
+port is basically a data queue
+< 1024 considered to be service ports
+>= 1024 free for usage
+// 3238
+IP address - net card, not the device itself
+
+bsd socket - family of functions to communicate via network
+
+CLIENT
+int s = socket(); // sort of file descriptor - key for OS
+// default state - not connected
+connect(s, remote_address, ...);
+
+read/write(); // polymorphic
+recv/send(); // socket specialization
+
+close(s); // closing file descriptor
+
+SERVER
+int s = socket();
+bind(s, local_address, ...); // which card and port listens to
+// bind (0.0.0.0:0); // choose port on your own
+listen(s, ...);
+
+int c = accept(s); // gets a connected dude from os queue
+
+    loop:
+    read/write/send/recv
+    close(c);
+
+close(s);
+
+lsof -i -P
+strace
+telnet
+
+poll - api for checking who is ready to read or write
+accept counts as read
+
+after write do poll again
+
+poll after each write is not perfect
+
+switch non block - read does not block, just sort of returns an empty state
+
+// SIGNALS lecture
+    volatile // <-- should never be used in life
+    single use - to be able to address it from signal handler
+    volatile bool quit = false;
+    and some other hardcore implementations we will never need - basically command to compiler to do nothing with it
+
+    can call some posix functions (write read)

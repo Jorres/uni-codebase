@@ -1,0 +1,17 @@
+# ignore stress test artifacts
+exec
+correct
+generator
+
+*.in
+*.out 
+
+# ignore TabNine
+.cquery
+/pcms/**/~/*
+
+# ignore CMake build artifacts
+**/build/**
+
+# ignore vim swap files
+*.swp*
