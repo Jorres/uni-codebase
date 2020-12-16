@@ -1,0 +1,240 @@
+.moon {
+    animation: 5s linear 0s moonrise;
+    animation-fill-mode: forwards;
+}
+
+@keyframes moonrise {
+    from {
+        transform: translate(-550px, 250px) scale(1);
+    }
+
+    to {
+        transform: translate(0, 0) scale(0.7);
+    }
+}
+
+.cloud-1 {
+    animation: 10s linear 0s infinite cloud-one;
+}
+
+@keyframes cloud-one {
+    from {
+        transform: translate(-800px, 100px) scale(-1, 1);
+    }
+
+    to {
+        transform: translate(2000px, 100px) scale(-1, 1);
+    }
+}
+
+.cloud-2 {
+    animation: 12s linear 0s infinite cloud-two;
+}
+
+@keyframes cloud-two {
+    from {
+        transform: translate(-200px, 50px) scale(0.7);
+    }
+
+    to {
+        transform: translate(1400px, 50px) scale(0.7);
+    }
+}
+
+.cloud-3 {
+    opacity: 0.8;
+    animation: 15s linear 0s infinite cloud-three;
+}
+
+@keyframes cloud-three {
+    from {
+        transform: translate(-200px, 150px) scale(0.5);
+    }
+
+    to {
+        transform: translate(900px, 150px) scale(0.5);
+    }
+}
+
+.cloud-4 {
+    opacity: 0.6;
+    animation: 20s linear 0s infinite cloud-four;
+}
+
+@keyframes cloud-four {
+    from {
+        transform: translate(-200px, 250px) scale(-0.4, 0.4);
+    }
+
+    to {
+        transform: translate(900px, 250px) scale(-0.4, 0.4);
+    }
+}
+
+.train {
+    animation: 10s linear 0s infinite train-ride;
+}
+
+@keyframes train-ride {
+    from {
+        transform: translateX(600px);
+    }
+
+    to {
+        transform: translateX(-1000px);
+    }
+}
+
+.wheel {
+    animation: 2s linear 0s infinite wheel-rotate;
+}
+
+@keyframes wheel-rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    from {
+        transform: rotate(1turn);
+    }
+}
+
+.wheel-joint-1 {
+    animation: 2s linear 0s infinite wheel-joint-one;
+}
+
+.wheel-joint-2 {
+    animation: 2s linear 0s infinite wheel-joint-two;
+}
+
+@keyframes wheel-joint-one {
+    0% {                              
+        /* transform: rotate(0) translateY(0.7rem) rotate(-1turn); */
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(1turn);
+        /* transform: rotate(-1turn) translateY(0.7rem) rotate(0turn); */
+    }
+}
+
+@keyframes wheel-joint-two {
+    from {                              
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(0.45turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.smoke-1 {
+    animation: 2s linear 0s infinite smoke-one;
+}
+
+.smoke-2 {
+    animation: 2s linear 0.5s infinite smoke-one;
+}
+
+.smoke-3 {
+    animation: 2s linear 1s infinite smoke-one;
+}
+
+.smoke-4 {
+    animation: 2s linear 1.5s infinite smoke-one;
+}
+
+@keyframes smoke-one {
+    from {
+        transform: translate(0px, 0px) scale(1) rotate(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(60px, -100px) scale(4.5) rotate(0.45turn);
+        opacity: 0;
+    }
+}
+
+.cwindow-1 {
+    animation: 1s linear 0s infinite cwindow-one;
+}
+
+.cwindow-2 {
+    animation: 2s ease-in-out 0.3s infinite cwindow-one;
+}
+
+.cwindow-3 {
+    animation: 3s linear 0.6s infinite cwindow-one;
+}
+
+.cwindow-4 {
+    animation: 1s linear 0.3s infinite cwindow-two;
+}
+
+.cwindow-5 {
+    animation: 3s ease-in-out 0s infinite cwindow-two;
+}
+
+.cwindow-6 {
+    animation: 2s linear 0.8s infinite cwindow-two;
+}
+
+.cwindow-7 {
+    animation: 3s linear 0.5s infinite cwindow-three;
+}
+
+.cwindow-8 {
+    animation: 2s ease-in-out 0s infinite cwindow-three;
+}
+
+.cwindow-9 {
+    animation: 1s linear 0.8s infinite cwindow-three;
+}
+
+@keyframes cwindow-one {
+    0% {
+        background-color: skyblue;
+    }
+
+    50% {
+        background-color: yellow;
+    }
+
+    100% {
+        background-color: skyblue;
+    }
+}
+
+@keyframes cwindow-two {
+    0% {
+        background-color: skyblue;
+    }
+
+    50% {
+        background-color: orchid;
+    }
+
+    100% {
+        background-color: skyblue;
+    }
+}
+
+@keyframes cwindow-three {
+    0% {
+        background-color: skyblue;
+    }
+
+    50% {
+        background-color: lightgreen;
+    }
+
+    100% {
+        background-color: skyblue;
+    }
+}

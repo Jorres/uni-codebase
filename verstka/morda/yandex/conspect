@@ -1,0 +1,11 @@
+block-name: class, purpose
+elem-name:  cannot be separated from block, class name: blockclasss__elemclass
+elems can be nested, but only inherit the prefix from parent block
+
+
+
+blocks do not set any external geometry
+
+properties and modifiers are appended to a block via _
+
+a DOM node can be both element and a block at the same time

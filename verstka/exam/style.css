@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-areas: ". f .";
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+
+    grid-area: f;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    margin-top: 71px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    position: relative;
+
+    margin-top: 47px;
+
+    width: 477px; 
+    height: 250;
+}
+
+.card-size {
+    width: 350px;
+    height: 220px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.front {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #F0F0EE;
+}
+
+.back { 
+    position: relative;
+    top: 30px;
+    left: 127px;
+    background-color: #E0DDD7;
+    z-index: -1;
+}
+
+.should-send {
+    margin-top: 46px;
+    margin-right: 50%;
+    position: relative;
+}
+
+.should-send__checkbox {
+    /* display: block; */
+}
+
+.should-send__email {
+    display: none;
+}
+
+.should-send__checkbox:checked + .should-send__email {
+    display: block;
+    position: absolute;
+    left: 140%;
+}
+
+.cards-logo {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.mastercard, .visa {
+    height: 70px;
+    width: 80px;
+}
+
+.mastercard__pic, .visa__pic {
+    width: 100%;
+}
+
+.card-number {
+    margin: 20px 10px 0px 10px;
+    width: 310px;
+    height: 40px;
+}
+
+.valid-thru {
+    margin: 15px;
+    margin-bottom: 5px;
+    color: gray;
+    font-family: Arial, sans-serif;
+}
+
+.date {
+    display: flex;
+}
+
+.datepick {
+    height: 25px;
+    width: 42px;
+    margin: 5px;
+    margin-left: 10px;
+}
+
+.grayline {
+    position: relative;
+    background-color: #8E8B85;
+    width: 100%;
+    height: 45px;
+    top: 40px;
+}
+
+.cvv {
+    position: absolute;
+    bottom: 64px;
+    right: 25px;
+    width: 71px;
+    height: 40px;
+
+}
+
+.p1, .p2, .p3 {
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    font-size: 13px;
+    color: gray;
+    font-family: Arial, sans-serif;
+    margin: 0px;
+}
+
+.p2 {
+    bottom: 27px;
+}
+
+.p1 {
+    bottom: 45px;
+}
+
+.submit {
+    margin-top: 30px;
+    width: 140px;
+    height: 48px;
+    background-color: #FFDB4D;
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+.slash {
+    font-size: 30px;
+    margin: 0;
+    margin-top: 5px;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Свинку на прокачку</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+      <div class='flex-centerer'>
+          <main class='main-grid'>
+            <section class='form-actions'>
+                <div class='middle-part'>
+                    <header class='headline'>Прокачай свинку!</header>
+                    <p class='suggestion'>Подпишись на рассылку нашего тренера и 
+                       получи индивидуально подобранную программу 
+                       тренировок для своей свинки!</p>
+                    <div class='stats'>
+                        <span>Масса, кг</span>
+                        <input class='big-placeholder big-input' type='number' placeholder='2'/>
+                        <span>Возраст, года</span>
+                        <input class='big-placeholder big-input' type='number' placeholder='1'/>
+                    </div>
+                    <div class='radio'>
+                        <input name='purpose' class='radio-button nodisplay' type='radio' id='grow'>
+                        <label class='radio-label' for='grow'><span>Набор массы</span></label>
+                        <input name='purpose' class='radio-button nodisplay' type='radio' id='decrease'>
+                        <label class='radio-label' for='decrease'><span>Похудение</span></label>
+                        <input name='purpose' class='radio-button nodisplay' type='radio' id='noinfo'>
+                        <label class='radio-label' for='noinfo'><span>Не знаю</span></label>
+                    </div>
+                    <input class='big-placeholder email-input' type='email' placeholder='i_love_guinea@pigs.com'/>
+                    <label class="control checkbox">
+                      <input type="checkbox">
+                      <span class="control-indicator"></span>
+                      Хочу спам! (Это кастомный чекбокс)
+                    </label>
+                    <button class='submit-button'>Подписаться</button>
+                </div>
+            </section>
+
+            <section class='picture-band'>
+                <div class='yellow-band'></div>
+                <div class='pig-wrapper'>
+                </div>
+            </section>
+          </main>
+      </div>
+  </body>
+</html>

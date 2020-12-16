@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Meowmarket</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+      <div class='main-grid'>
+          <header class='header'>
+              Meowmarket
+          </header>
+          <div class="slidecontainer">
+              <input type="range" min="1" max="12" value="6" class="slider">
+          </div>
+          <div class='slide-sidenotes'>
+              Выберите начальный возраст:
+          </div>
+
+          <div class="slidecontainer second">
+              <input type="range" min="1" max="12" value="6" class="slider">
+          </div>
+          <div class='slide-sidenotes second-slidenotes'>
+              Выберите конечный возраст:
+          </div>
+          <input class='radio-button'  id='radio-1' type='radio' name='breed'/>
+          <label class='radio-wrapper' id='wrapper-1' for='radio-1'><span>Абиссинская</span></label>
+          <input class='radio-button'  id='radio-2' type='radio' name='breed'/>
+          <label class='radio-wrapper' id='wrapper-2' for='radio-2'><span>Сфинкс</span></label>
+          <input class='radio-button'  id='radio-3' type='radio' name='breed'/>
+          <label class='radio-wrapper' id='wrapper-3' for='radio-3'><span>Сибирская</span></label>
+          <input class='radio-button'  id='radio-4' type='radio' name='breed'/>
+          <label class='radio-wrapper' id='wrapper-4' for='radio-4'><span>Персидская</span></label>
+          <input class='radio-button'  id='radio-5' type='radio' name='breed'/>
+          <label class='radio-wrapper' id='wrapper-5' for='radio-5'><span>Дворовая</span></label>
+          <input class='radio-button'  id='radio-6' type='radio' name='breed'/>
+          <label class='radio-wrapper' id='wrapper-6' for='radio-6'><span>Предпочла не сообщать</span></label>
+          <input class='radio-button'  id='radio-7' type='radio' name='breed' checked/>
+          <label class='radio-wrapper' id='wrapper-7' for='radio-7'><span>Снять фильтр</span></label>
+
+          <section class='flex-cats-container'>
+              <div class='cat cat-a'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/a.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Мери Олсен</h2>
+                        <p class="illness">Болезни: oбработана от паразитов, привита.</p>
+                        <p class="age">Возраст: 1.5 года</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Мери осторожная, но дается погладить. Лежит, урчит и
+                      подставляет животик.  Для ответственных людей, понимающих,
+                      что Мери нужно время привыкнуть.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-b'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/b.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Сабрина</h2>
+                        <p class="illness">Болезни: клинически здорова</p>
+                        <p class="age">Возраст: около 8 месяцев</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Бело-чёрная пушистая девочка, ласкова, обожает играть
+                      и вкусности.  Прекрасно ладит с другими кошачьими.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-c'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/c.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Лика</h2>
+                        <p class="illness">Болезни: клинически здорова</p>
+                        <p class="age">Возраст: около полугода</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Чёрненькая малышка с белой грудкой.
+                      Ласковая, любознательная, активная. Отлично ладит с другими кошками.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-d'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/d.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Сёма</h2>
+                        <p class="illness">Болезни: отсутствует левое ухо</p>
+                        <p class="age">Возраст: 1 год</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Молодой и мегаласковый кот. Не даст вашим ногам отдыху,
+                      постоянно будет о них тереться.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-e'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/e.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Прохор</h2>
+                        <p class="illness">Болезни: обработан от паразитов</p>
+                        <p class="age">Возраст: 6 лет</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Прохор когда-то был домашним, но, видимо, людям надоели
+                      метки, и они выгнали парня на улицу. Очень интересный кот. Ласковый, но
+                      ворчливый, не тискательный, но не прочь чтоб его погладили,
+                      прикольный котеич.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-f'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/f.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Чарли</h2>
+                        <p class="illness">Болезни: клинически здорова</p>
+                        <p class="age">Возраст: 1 год</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Очень дружелюбный котик, любит людей.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-g'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/g.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Соня</h2>
+                        <p class="illness">Болезни: нет хвоста и худощавое телосложение</p>
+                        <p class="age">Возраст: 1 год</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Немного стеснительная,
+                      но в заботливых руках быстро оттает.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-h'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/h.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Ярик</h2>
+                        <p class="illness">Болезни: ожирение легкой степени</p>
+                        <p class="age">Возраст: 3 месяца</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Мальчишка абсолютно ручной, контактный, ласковый.
+                      Активный и весёлый. Прекрасно ладит с другими питомцами.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-i'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/i.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Стёпа</h2>
+                        <p class="illness">Болезни: недавно проведена уретротомия</p>
+                        <p class="age">Возраст: 3 года</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Крупный, пушистый котик с грустными зелёными
+                      глазами и нежным голоском.  Спокойный, ласковый, неконфликтный.
+                      Любит общество людей, но ненавязчив. Ладит с другими животными.
+                    </p>
+                </aside>
+            </div>
+
+            <div class='cat cat-j'>
+                <div class='pic-wrapper'>
+                    <img class='cat-pic' alt='A picture of a cat' src='cats_pics/j.jpg'>
+                    <aside class='cat-short-notes'>
+                        <h2 class="name">Имя: Клайд</h2>
+                        <p class="illness">Болезни: oбработан от паразитов, привит.</p>
+                        <p class="age">Возраст: 6 месяцев</p>
+                        <p class="status">Ищет хозяина</p>
+                    </aside>
+                </div>
+                <aside class='cat-description'>
+                    <p class="description">Клайд очень тянется за общением, поиграть,
+                      чтобы приласкали.  Малыш очень устал сидеть в клетке и ждать своих хозяев.
+                      Кушает сухой и влажный корм, ходит в лоток.  Присмотритесь к малышу,
+                      он так хочет домой.
+                    </p>
+                </aside>
+            </div>
+
+            <h1 class='nodisplay'>Empty</h1>
+        </section>
+        <footer class='footer'>
+            <aside class="mails">
+                <p class="write_to_us">Напишите нам:</p>
+                <img alt="mail" class="mail_icon" src="cats_pics/mail_icon.png">
+                <a class="first_mail" href="mailto:cats@babuli.ru">cats@babuli.ru</a>
+                <br>
+                <img alt="mail" class="mail_icon" src="cats_pics/mail_icon.png">
+                <a class="second_mail" href="mailto:vnuchek@babuli.ru">vnuchek@babuli.ru</a>
+                <small>&copy; Copyright 2020, Бабушкины котятки</small>
+            </aside>
+        </footer>
+      </div>
+  </body>
+</html>

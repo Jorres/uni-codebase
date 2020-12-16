@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Yandex</title>
+        <link rel="stylesheet" href="./index.css">
+        <script src="./index.js"></script>
+    </head>
+    <body>
+        <main class="main-grid">
+            <section class="profile">
+                <p class="profile__login">Login</p>
+                <p class="profile__mail">Почта 144</p>
+            </section>
+            <div class="settings">
+                <input type="checkbox" class="settings__display-popup" id="settings__display-popup"/>
+                <label class="settings__main-label" for="settings__display-popup">Допзадание</label>
+                <div class="settings__popup">
+                    <label class="settings__label">
+                        <input type="checkbox" class="settings__afisha" checked/>Афиша
+                    </label>
+                    <label class="settings__label">
+                        <input type="checkbox" class="settings__visited" checked/>Посещаемое
+                    </label>
+                    <label class="settings__label">
+                        <input type="checkbox" class="settings__anecdotes" checked/>Лучшие анекдоты
+                    </label>
+                    <label class="settings__label">
+                        <input type="checkbox" class="settings__tele" checked/>Телепрограмма
+                    </label>
+                    <label class="settings__label">
+                        <input type="checkbox" class="settings__autonews" checked/>Автомобильные новости
+                    </label>
+                    <label class="settings__label">
+                        <input type="checkbox" class="settings__weather" checked/>Погода
+                    </label>
+                    <label class="settings__label">
+                        <input type="checkbox" class="settings__jams" checked/>Пробки
+                    </label>
+                    <label class="settings__label">
+                        <input type="checkbox" class="settings__map" checked/>Карта Екатеринбурга
+                    </label>
+                </div>
+            </div>
+            <section class='news'>
+                <div class='news__headline'>
+                    <span class="news__smi">Сейчас в СМИ</span>
+                    <span class="news__town">в Екатеринбурге</span>
+                    <span class="news__date">13 ноября, 14:01</span>
+                </div>
+                <ul class='news__newslist'>
+                    <li class="news__item">В Кремле ответили на слова экс-главы ЦРУ о "запуганном" Путиным Трампе</li>
+                    <li class="news__item">Число жертв землетрясения в Иране и Ираке превысило 350 человек</li>
+                    <li class="news__item">Вероятной целью проникновения в Рф назвали шпионаж</li>
+                    <li class="news__item">Кремль рассказал о местонахождении не явившегося в суд Сечина</li>
+                    <li class="news__item">Кремль прокомментировал перенос послания Путина Федеральному собранию</li>
+                </ul>
+            </section>
+            <section class='student-offer'>
+                <div class='student-offer__airpods-wrapper'>
+                    <div class='student-offer__img-wrapper'>
+                        <img class='student-offer__img' alt='airpods pro' src='./img/offer.png'>
+                    </div>
+                    <div class='student-offer__img-wrapper'>
+                        <img class='student-offer__img' alt='airpods pro' src='./img/offer.png'>
+                    </div>
+                </div>
+                <p class='student-offer__offer-text'>Всем студентам Airpods Pro.</p>
+                <p class='student-offer__clarify-text'>Бесплатно и навсегда.</p>
+            </section>
+            <div class="search-bar">
+                <div class="search-bar__logo centered">
+                    <p>Яндекс</p>
+                </div>
+                <div class="search-bar__bar">
+                    <div class='search-bar__link-container'>
+                        <a class="search-bar__link">Видео</a>
+                        <a class="search-bar__link">Картинки</a>
+                        <a class="search-bar__link">Новости</a>
+                        <a class="search-bar__link">Карты</a>
+                        <a class="search-bar__link">Маркет</a>
+                        <a class="search-bar__link">Переводчик</a>
+                        <a class="search-bar__link">Музыка</a>
+                    </div>
+                    <div class='search-bar__input-wrapper'>
+                        <input class="search-bar__input" type="text"/>
+                        <button class='search-bar__find-button'>
+                            Найти
+                        </button>
+                    </div>
+                    <div class='search-bar__suggestion'>
+                        <p class='search-bar__suggestion-par'>Найдется все. Например, ...выхожу один я на дорогу</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="main-ads">
+                <div class="main-ads__img-wrapper">
+                </div>
+            </section>
+
+            <section class="widget-area">
+                <div class="widget-area__widget afisha">
+                    <h3 class="widget_area__header">Афиша</h3>
+                    <span class="widget-area__line-span">Субурбикон <span class="widget_area__span-gray">премьера в чт</span></span>
+                    <span class="widget-area__line-span">Последний богатырь <span class="widget_area__span-gray">приключения</span></span>
+                    <span class="widget-area__line-span">Фиксики: большой секрет <span class="widget_area__span-gray">мультфильм</span></span>
+                    <span class="widget-area__line-span">Тор: Рагнарёк <span class="widget_area__span-gray">фентези</span></span>
+                    <span class="widget-area__line-span">Убийство в восточном... <span class="widget_area__span-gray">драма</span></span>
+                </div>
+
+                <div class="widget-area__widget visited">
+                    <h3 class="widget_area__header">Посещаемое</h3>
+                    <span class="widget-area__line-span"><span class="widget_area__span-bold">Маркет --</span> китайская распродажа</span>
+                    <span class="widget-area__line-span"><span class="widget_area__span-bold">Автору --</span> туссан третьей серии</span>
+                    <span class="widget-area__line-span"><span class="widget_area__span-bold">Недвижимость --</span> продажа студии</span>
+                    <span class="widget-area__line-span"><span class="widget_area__span-bold">Работа --</span> охранником</span>
+                    <span class="widget-area__line-span"><span class="widget_area__span-bold">Здоровье --</span> врач на связи</span>
+                </div>
+
+                <div class="widget-area__widget autonews">
+                    <h3 class="widget_area__header">Автоновости</h3>
+                    <div class="widget-area__autonews-upper-shadow"></div>
+                    <div class="widget-area__autonews-holder">
+                        <span class="widget-area__line-span">Контент-креатор ушел в отпуск после 6 часов верстки</span>
+                        <span class="widget-area__line-span">Контент-креатор ушел в отпуск после 6 часов верстки</span>
+                        <span class="widget-area__line-span">Контент-креатор ушел в отпуск после 6 часов верстки</span>
+                        <span class="widget-area__line-span">Контент-креатор ушел в отпуск после 6 часов верстки</span>
+                        <span class="widget-area__line-span">Контент-креатор ушел в отпуск после 6 часов верстки</span>
+                        <span class="widget-area__line-span">Контент-креатор ушел в отпуск после 6 часов верстки</span>
+                        <span class="widget-area__line-span">Контент-креатор ушел в отпуск после 6 часов верстки</span>
+                    </div>
+                    <div class="widget-area__autonews-lower-shadow"></div>
+                </div>
+
+                <div class="widget-area__widget tele">
+                    <h3 class="widget_area__header">Телепрограмма</h3>
+                    <span class="widget-area__line-span">16:00 Понять. Простить. <span class="widget_area__span-gray">41 домашний</span></span>
+                    <span class="widget-area__line-span">16:30 Место встречи <span class="widget_area__span-gray">НТВ</span></span>
+                    <span class="widget-area__line-span">16:30 Детективы <span class="widget_area__span-gray">РЕН-ТВ</span></span>
+                    <span class="widget-area__line-span">16:30 Сверстать Яндекс <span class="widget_area__span-gray">ИТМО</span></span>
+                </div>
+
+                <div class="widget-area__widget anecdotes">
+                    <h3 class="widget_area__header">Анекдоты</h3>
+                    <span class="widget-area__line-span widget-area__anecdote-holder">Я анекдот!</span>
+                    <button class="widget-area__show-more">Показать еще</button>
+                </div>
+
+                <div class="widget-area__widget weather">
+                    <h3 class="widget_area__header">Погода -3 C</h3>
+                    <span class="widget-area__line-span">Вечер -5, ночью -7</span>
+                </div>
+
+                <div class="widget-area__widget jams">
+                    <h3 class="widget_area__header">Пробки, 4 балла</h3>
+                    <span class="widget-area__line-span">Местами затруднения</span>
+                </div>
+
+                <div class="widget-area__widget map">
+                    <h3 class="widget_area__header">Карта Екатеринбурга</h3>
+                    <pre class="widget_area__span-bold">Такси     Расписания</pre>
+                    <pre class="widget_area__span-bold">Междугородние автобусы</pre>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

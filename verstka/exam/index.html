@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Exam task</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <main class="main">
+                <h1 class="title">Payment form</h1>
+                <section class="card">
+                    <div class="front card-size">
+                        <div class="cards-logo">
+                            <div class="mastercard">
+                                <img class="mastercard__pic" src="mastercard.png" alt="mastercard logo">
+                            </div>
+                            <div class="visa">
+                                <img class="visa__pic" src="visa.png" alt="visa logo">
+                            </div>
+                        </div>
+                        <input class="card-number" type="number" placeholder="Card number">
+                        <p class="valid-thru"> VALID THRU </p>
+                        <div class="date">
+                            <input class="datepick" type="number" placeholder="MM">
+                            <p class="slash">/</p>
+                            <input class="datepick" type="number" placeholder="YY">
+                        </div>
+                    </div>
+                    <div class="back card-size">
+                        <div class="grayline"></div>
+                        <input class="cvv datepick" type="number" placeholder="CVV">
+                        <p class="p1">Три цифры с</p>
+                        <p class="p2">оборотной</p>
+                        <p class="p3">стороны карты</p>
+                    </div>
+                </section>
+                <label class="should-send">
+                    <input class="should-send__checkbox" type="checkbox" name="checkbox" value="send">Send the check
+                    <input class="should-send__email" type="email" placeholder="Enter your email..."/>
+                </label>
+                <button class="submit">Pay</button>
+            </main>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+rgba
+hsl(30, 100%, 0%) - hue, saturation, lightness
+
+alpha channel is different from opacity, alpha 0.5 gives opacity to background picture, but not to the text in the block
+
+linear-gradient for background-image;
+radial-gradient, around specific dot, with ellipsis coordinates
+
+there can be multiple gradients directed under multiple angles
+
+Gradients heavily depend on the display quality, on bad ones it may look awful, unsmooth and with artifacts
+
+Векторная графика
+Абсолютная точность
+Формат svg, xml стандартик, чисто описание элементарных фигур
+Можно чисто заинлайнить svg код
+Грузит проц, выглядит мультяшно
+
+Растровая - картинка потяжелее, теряет в качестве, не поредактируешь
+Но очень реалистично
+
+Глубина цвета - логарифм количества вариантов цветов, которое принимает цвет
+Человеческому глазу хватает 2 в 16 бит
+
+Еще есть индексированный цвет, храним только те цвета, которые используем, мапим в 0..n
+
+
+bmp - bitmap picture, никакого сжатия нет, нет потери качества, ЖУТКО тяжело
+gif - graphics interchange format - меняется только там, где надо поменяться, 256 цветов, однобитовая прозрачность
+jpeg - joint photo experts group - большая палитра, прогрессивный jpeg (прогружается постепенно), большая глубина цвета
+при пересохранении применяются алгоритмы сжатия, 20 раз пересохранил и страдаешь
+Нет прозрачности, анимаций, иногда появляются артефакты из-за сжатия-пережатия
+png - альфаканал, 0-100, хорошо сжимается, можно пересохранять, есть разная глубина. Плохо подходит для фото, т.к. хорошо
+работает там, где много повторяющихся цветов (алгоритмы сжатия на это заточены)
+
+webp, очень хорошо сжимает, продвигается гуглом, поддержка поменьше, алгоритмы поумнее jpeg
+
+Оптимизация svg - надо сжимать именно текст, всякие хаффманы там 
+
+
+Object fill - cover, CONTAIN!!!!!, fill, none - original size
+background-image
+background-repeat: no-repeat
+background-origin: заползать ли под паддинг и границу
+Есть много фильтров, filter: blur, opacity, saturation, brightness, invert, contrasto
+
+Sprite - много картинок в одну. 
+
+Меньше запросов к серверу
+Можно менять красиво по hover
+Сложно добавлять новые картинки (но есть тулы)
+
+Base64, кодирование картиночки, но раздутие html + css, мусор в коде

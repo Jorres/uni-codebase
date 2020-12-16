@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+}
+
+.flex-centerer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-grid {
+    width: 80%;
+    height: 60vh;
+    border: 1px solid gray;
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 'form band';
+}
+
+
+.picture-band {
+    display: flex;
+    justify-content: center;
+    border-left: 1px solid gray;
+    position: relative;
+}
+
+.yellow-band {
+    height: 100%;
+    width: 40%;
+    background-color: yellow;
+}
+
+.pig-wrapper {
+    background: url(./img/a.jpg) no-repeat center center;
+
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    bottom: 20%;
+    left: 20%;
+    background-color: white;
+}

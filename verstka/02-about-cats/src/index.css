@@ -1,0 +1,195 @@
+@font-face {
+  font-family: 'PT Sans Narrow';
+  font-style: normal;
+  font-weight: normal;
+
+  src: url('fonts/PTSans-Narrow.eot');
+  src: url('fonts/PTSans-Narrow.eot?#iefix') format('embedded-opentype'),
+    url('fonts/PTSans-Narrow.woff2') format('woff2'), url('fonts/PTSans-Narrow.woff') format('woff'),
+    url('fonts/PTSans-Narrow.svg#PTSans-Narrow') format('svg');
+}
+
+body {
+  overflow: hidden;
+}
+
+.cats_wrapper {
+  overflow: hidden;
+
+  width: 1000vw;
+  height: 80vh;
+
+  margin-top: 80px;
+  margin-left: -500vw;
+
+  text-align: right;
+}
+
+.cat {
+  position: relative;
+
+  display: inline-block;
+
+  padding: 0px 1vw;
+}
+
+.switcher {
+  display: none;
+}
+
+.switcher + .cat {
+  vertical-align: top;
+}
+
+.switcher + .cat > img {
+  width: 100%;
+}
+
+.switcher:not(:checked) + .cat {
+  width: 28vw;
+  height: 28vw;
+  margin: 2vw 0;
+
+  transition: 0.5s ease-out 0s;
+
+  opacity: 0.7;
+}
+
+.switcher:checked + .cat {
+  width: 35vw;
+  height: 35vw;
+
+  transition: 0.5s ease-out 0s;
+}
+
+.cat_name {
+  position: absolute;
+
+  display: inline-block;
+
+  box-sizing: border-box;
+
+  padding-top: 20vh;
+
+  transition: 0.1s ease-out 0.1s;
+
+  color: white;
+  font-size: 50px;
+
+  opacity: 0;
+
+  text-align: center;
+}
+
+.switcher:not(:checked) + .cat > .cat_name {
+  width: 28vw;
+  height: 28vw;
+
+  opacity: 0;
+}
+
+.switcher:checked + .cat > .cat_name {
+  width: 35vw;
+  height: 35vw;
+}
+
+.right_filler {
+  display: inline-block;
+
+  width: 170vw;
+  height: 30vw;
+
+  transition: 0.5s ease-out 0s;
+}
+
+#cat_a_checkbox:checked ~ .right_filler {
+  width: 170vw;
+}
+#cat_b_checkbox:checked ~ .right_filler {
+  width: 200vw;
+}
+#cat_c_checkbox:checked ~ .right_filler {
+  width: 230vw;
+}
+#cat_d_checkbox:checked ~ .right_filler {
+  width: 260vw;
+}
+#cat_e_checkbox:checked ~ .right_filler {
+  width: 290vw;
+}
+#cat_f_checkbox:checked ~ .right_filler {
+  width: 320vw;
+}
+#cat_g_checkbox:checked ~ .right_filler {
+  width: 350vw;
+}
+#cat_h_checkbox:checked ~ .right_filler {
+  width: 380vw;
+}
+#cat_i_checkbox:checked ~ .right_filler {
+  width: 410vw;
+}
+#cat_j_checkbox:checked ~ .right_filler {
+  width: 440vw;
+}
+
+.sticky {
+  position: fixed;
+
+  width: 90%;
+}
+
+.header {
+  top: 0;
+}
+
+.meowmarket {
+  margin: 0 auto;
+
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 32px;
+
+  text-align: center;
+}
+
+.footer {
+  bottom: 0;
+
+  padding: 10px;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.meowmarket::first-letter {
+  color: red;
+}
+
+small {
+  float: right;
+
+  font-size: 1em;
+}
+
+.write_to_us {
+  color: gray;
+}
+
+.first_mail,
+.second_mail {
+  display: inline;
+
+  color: #4c4cd8;
+
+  text-decoration: none;
+}
+
+.mail_icon {
+  display: inline;
+
+  width: 26px;
+}
+
+.nodisplay {
+    position: absolute;
+    display: none;
+}
