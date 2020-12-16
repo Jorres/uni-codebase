@@ -1,0 +1,70 @@
+Scheduling continuing
+
+Note: importance value for the process should be both OS-evalued and user-evalued. 
+Kind of contradicting( at some point user does not want to update Windows
+
+Concept of multilevel queues turned out to be most suitable for most OS'.
+
+POSIX standart requires to divide processes into processes of real-time and 'other'.
+Response of this process to any outer action is smaller than some pre-given constant.
+Most of the systems now are NOT real-time. 
+
+Consider invariant of real-timeness - these are most important to user. 
+
+So both Windows and Linux decided to use two instances of multilevel queus - one for realtime and one for others.
+
+WNDWS Have a look at windows management:
+WNDWS 32 queues
+WNDWS 
+WNDWS | 31-16 realtime                      Planning occurs from top to bottom. A process in 'i' queue cannot be executed 
+WNDWS in Windows - system processes         if there is a process in 'i + n' queue, n > 0.
+WNDWS Windows knows all about it's processes and plans them accordingly, so it's highly unadvisable to ascend your process to realtime.
+WNDWS 
+WNDWS | 1-15  other
+WNDWS base queues for user processes and some low-priority system processes. Processes can move around in these queues. 
+WNDWS 
+WNDWS | 0 queue for background paging update. (unique for windows, new processes are not cloned, but created on clean environment -> 
+WNDWS                                          not to let harmful processes thrive on remaining info from other process, we should clear
+WNDWS                                          background pages and 0 queue is used for that).
+WNDWS 
+WNDWS NB: for interactive processes it might be profitable to increase priority when exiting waiting state - 
+WNDWS     possibly, if you wait for i\o too much, computing time for you will be short - short cpu-burst
+WNDWS     (keyboard and sound card are examples of such).
+
+LINUX Linux management:
+LINUX 
+LINUX Fifo processes - guaranteed to be higher priority than non-fifo; immune to preemptive schedulers
+LINUX Why needed? Because we need to maintain atomic property of some operations - such processes must 
+LINUX not be interrupted. 
+LINUX 
+LINUX On top of these, 2 arrays:
+LINUX 
+LINUX        active   inactive
+LINUX 1-100   | |       0|q|
+LINUX         | |       1|q|                                            <-- REALTIME
+LINUX         | |       0|q|
+LINUX --------------------------
+LINUX 101-140 | |       1|q| 40 mks << time associated for each queue
+LINUX         | |       1|q| 80 mks <                                   <-- OTHER
+LINUX         | |       1|q|
+LINUX                   ^
+LINUX                   bit vector, 1 if at least 1 process in queue
+LINUX 
+LINUX if a process worked out his quota, he goes to analogous queue to inactive
+LINUX if didn't worked a quota, he is pushed to end of his queue in still active 
+LINUX once array is emptied, active and inactive are swapped. 
+LINUX 
+LINUX Advantages: no process hungers
+LINUX             user priorities are supported
+LINUX             behaviour of process is also taken into account by recalculating priority in others
+LINUX             priority get more resources then non-priority
+LINUX NB: for each processor this scheduling system is duplicated for cache maintaining
+LINUX But for balance problem resolving, each 200ms processes could be moved not only to queues of his own processor, 
+LINUX but to others as well. Juriev den'.
+LINUX Critics: floating point calculation of priority is soo slow 
+LINUX 
+LINUX 
+LINUX From some Linux revision, CFS scheduler - completely fair scheduler could be launched on 'other' processes
+LINUX basically the implementation of guaranteed scheduler
+
+============================================================================

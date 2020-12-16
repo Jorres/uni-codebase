@@ -1,0 +1,64 @@
+================================================================
+Operational system's qualities are controversial.
+Requirements for OS are similar -> OS of nowadays are quite similar.
+All OS are compromisable solutions 
+
+================================================================
+5(4) (maybe even 3) levels of OS architecture
+    functional architecture
+        how to structure OS functions
+        (analyze them for controversity and fullness)
+ 
+    informational architecture
+        collect, process, store, present and transmit information
+        OS Linux - everything is text file (file-holes, i/o)
+        windows - specific structures, no unification
+
+    system architecture
+        what technologies to use, implementation level
+        (OS - program/hardware solution -> incompatibility of OS)
+        interfaces prepared
+
+    program architecture + data architecture
+        program code organization (interfaces sticking out)
+        data queries, caching etc
+================================================================        
+    goals? safety, performance and stability for user software
+           safety, performance and stability for hardware
+           safety, performance and stability for data storage
+           access to communication resources (opposing to standalone)
+           system-user interaction
+
+    functions? PRIMARY LOGICAL:
+               software<->hardware interface (API) (system calls)
+               support for program execution (concurring resources etc)
+               error detection and processing
+
+               SECONDARY DOWN-TO-EARTH:
+               universal access to i/o devices 
+               controllable access to files (file system)
+               resource usage analysis
+
+               effective resource usage
+                   effective - how? from earlier lectures we know about best way to ensure that resources
+                               are being used optimally is that every resource is used 100% all the time.
+                               (just because there is no other better choice)
+                   multicriterial choice - most of the time most resources are most 100% loaded,
+
+                   but effectiveness is not about hardware, it's convenience for programs:
+                   tales about supermarket clients reordering - cheaper to let easier jobs pass
+
+                   example - Linux O(1) scheduler - constant time scheduler, basically not delineating processes (2003-7)
+                                                    just executing them in order and again and again...
+                             Completely Fair Scheduler - runs an r-b-tree of how much each process has been executing
+                                                         and basically executing first ready to be executed in this queue
+
+                   adaptive control
+                   something happened - how to react?
+                   scheduling horizon - short is expensive
+                                        long is inefficient
+                                        TLDR: PDCA cycle
+                                        plan-do-check-act
+               data recovery procedure 
+
+================================================================        

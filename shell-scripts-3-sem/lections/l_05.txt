@@ -1,0 +1,56 @@
+Program architecture
+    statement: OS is planned for decades -> the need to make it as universal as possible.
+    -- modular architecture
+    -- functional excessivity (OS is planned for decades, both software and hardware are going to change
+        + OS is usually placed on different calculation nodes, servers or desktops)
+    -- ease of switching functionality off (you might not have a printer, but you'll have print server)
+    -- parameter universality (everything might be parameters) (controllable outer settings)
+    -- division of modules to kernel mode and user mode (give OS power monopoly) (software introduced privileged mode -
+        gain access to any address at RAM. Sort of switches off checks for security)
+        At least the checker for virtual memory itself should be able to check memory out of its' own!
+    -- code of OS is in RAM at all times, and more than that it does not move anywhere - code is residential (that is needed to protect
+        code of OS from changing during the process of moving to and from RAM. And since kernel code runs a lot, it would be better if it
+        run fust, so to avoid recalculating the virtual memory for OS code it has fixed addresses)
+
+    Monolite architecture // iz pesni slova ne vykinesh
+        functionality implemented within the core, has single address space and single scope for all functions.
+        +: fast. Every interface designed to delineate functions is bound to take speed losses
+        -: writing and debugging that core is utter nightmare.
+        -: residential monolithic kernel takes enormous amount of memory
+        -: monolithic kernel is not scalable
+        -: updating an utility, we need to consider everybody who can call it! since single scope, we need to consider everybody
+
+            to take care of updating difficulty, multilayer architecture was introduced - standartizing i\o between layers:
+            - hardware layer
+                * hardware kernel support - implemented in chipset microcode:
+                    virtual memory safety, interruptions, timer, context switching - all hardware
+                * hardware extension layer - part of code, that depends on hardware on which it runs - abstracts from hardware
+                    THAT'S WHY NOT PUT ANDROID ON X86
+                * base core mechanisms (those who do) and resource managers (those who think)
+                * system calls layer - abstracts from software
+
+            - service and utility layer
+            - main program layer (serves system calls and checks safety while computer runs)
+            WARNING! structure is only logical. Since kernel is monolithic, everybody sees everybody
+
+        10-15 years ago most OS were monolithic. Linux is also monolithic. Andrew Tannenbaum was for...
+
+    Microcore architecture
+        +: heavy part of code is not residential and can be off-loaded
+        +: safety - kernel can safely relaunch a printer server and continue working after it crashed, while on
+            monolithic it would be KERNEL PANIC
+        +: easy debug - impossible to debug kernel code, but service code is not kernel now!
+        +: scalable. manager is not hard-binded to hardware now
+        -: terribly inefficient: switching from kernel mode to user mode
+        -: difficult to supply stability and safety, since user mode servers now have concurrency with user applications, so it is
+            tempting to give privileged access to system processes pretending to be apps
+
+            - hardware + hardware kernel support + hardware extension layer + base mechanisms - in kernel mode
+                other intellectual stuff is taken out to user mode - system calls and resource managers, that's where the most difficult part
+            - application does request to the core, core redirects to modular
+
+    Exotic - nanocore architecture, even base mechanisms are user-mode now
+        (scheduler of emulated os in virtual box has no real idea of how much real processor time is he goind to get,
+         since for full OS virtual OS is just another process)
+    Exotic - exocore
+    Hybrid core - different processes can be launched in user OR kernel modes

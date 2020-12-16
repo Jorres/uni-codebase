@@ -1,0 +1,68 @@
+Mobile operational systems    
+
+lack of universal hardware -> OS developed for each computer 
+compiler is needed for each OS (because each os has different hardware) ->
+lack of compilers for high-level language
+
+but to do a complex cool OS we need high-level language
+
+Bell Labs!
+
+Unix Edition One -> 1 January 1970, epoch start
+    written on assembler
+they then create interpretator for B in assembler
+then intergchange assembler with B in their Unix
+
+then they create C compiler on B, and Unix Edition Five has
+compiler + core written on C
+
+Unix edition Seven had bash :) touch ancientry, 1978
+
+Berkley Software Distribution (university pressed on Bell Labs and
+got a version of Unix (like 6-7))
+
+BSD still lives nowadays, OpenBsd, FreeBsd, NetBsd.
+
+Science war between Stanford && Berkley -> Stanford creates
+Stanford University Networks - SUN (Java and so on)))
+
+Meanwhile AT&T still works on UNIX and creates System-5. (multithreaded programming)
+and Stanford somehow gets System-5 code and created Sun Solaris -> Open Solaris
+
+Enough on open source - proprietary branches are IRIX, AIX, HP-4X
+                                                       IBM  HP
+
+But. BSD, having a super-free license, could develop a cool 
+OS and patent it) and you won't be able to develop without crunches
+or you'd stumble on that patent
+
+Richard Stollman's free software movement
+Copyleft license - use as you wish, but publish result of your work as open source again
+He created a General Public License - masterpiece of law work.
+
+Creates GNU - GNU is Not Unix - recursive acronim
+since they need to use copyleft, they need to rewrite from scratch 
+Gcc - their compiler
+
+They needed a core. But no enthusiast could provide that at that time.
+And a random event helped - clash of Andrew Tannenbaum and Linus Torvalds - googlable
+Project is called GNU/Linux
+
+Unix and Windows have different software policies - applying and integrating.
+GTA 5, living on windows in system folder, would do just fine.
+On Unix, binaries lied with binaries, configs with configs and such standartization
+required specifications - which have some dispersion too. Debian packages and RPM packages.
+    
+1985 - Apple kicks out Steve Jobs 
+he creates Next company and NextStep OS (from BSD OS actually) for designers' 
+computers, triumphally returns to the company and NextStep -> macOS
+
+Microsoft starts out with DOS (Disk Operation System)
+Easy os, designed to be with as little knowledge threshold as possible
+DOS5, DOS6.22
+after that Microsoft adopted Gui - builds up on DOS, called Windows)
+First Windows being independent of DOS is windows95, and one of the most viable product
+came after user feedback on 95 - windows 98. 
+
+-- windows Millenium failure
+-- windows XP

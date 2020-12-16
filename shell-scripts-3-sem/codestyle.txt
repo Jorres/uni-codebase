@@ -1,0 +1,21 @@
+All error messages should go to STDERR.
+Start each file with a description of its contents.
+It should be possible for someone else to learn how to use your program or to use a function in your library by reading the comments (and self-help, if provided) without reading the code.
+
+Indent 2 spaces. No tabs.
+Pipelines should be split one per line if they don't all fit on one line.
+
+echo "$USER"
+
+Put ; do and ; then on the same line as the while, for or if.
+Always quote strings containing variables, command substitutions, spaces or shell meta characters, unless careful unquoted expansion is required.
+Prefer quoting strings that are "words" (as opposed to command options or path names).
+Never quote literal integers.
+Be aware of the quoting rules for pattern matches in [[]]
+Use "$@" unless you have a specific reason to use $*.
+
+[[ ... ]] is preferred over [, test and /usr/bin/[.
+
+Lower-case, with underscores to separate words. Separate libraries with ::. Parentheses are required after the function name. The keyword function is optional, but must be used consistently throughout a project.
+
+Use common sense and BE CONSISTENT.

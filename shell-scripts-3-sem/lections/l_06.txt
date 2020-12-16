@@ -1,0 +1,76 @@
+What is a process?
+
+Process = multitude of sets (threads) of executing commands, resources, associated with them and
+          the execution context(core code), being under the control of the operating system.
+
+          Any of these parts of the definition is non-optional, try to exclude and explain.
+
+          NB: Any parameters to system call should be passed within address space of your
+              application, because we are not allowed to write to core address space.
+
+          Process becomes a container for threads, sharing some common resources.
+          NB: Scheduling and resource management is done on the layer of threads, not processes.
+              Trouble emerges: OS is doing a management of threads blinded, because it does not know
+              of any specific code details, contradicting with programmer's needs, when he expects a certain
+              order of threads to be executed - sync of threads is needed.
+
+              A concept of fiber - concept, where multiple subthreads are running under SAME context, resources etc,
+              so basically giving control over subthreads. Minus: overhead cost of manual management, since the function
+              implemented in software is significantly slower than the function implemented in hardware.
+
+          NB: every page at chrome is a process by itself since each page can have executing code == process, in need of
+              isolating the process -> different address space and resources to each other.
+
+          Problem: Word + Chrome (150 pages opened) is not a concurrency 1:1, is a concurrency 1:151. User is not expecting that.
+                   Need of grouping processes by some principal: JOB (windows), CGROUP (Linux).
+
+Process management properties:
+
+    1) process is always created by another process.
+    2) except for the first one or two, created by the core at startup.
+    Linux:
+        1.1 every process is a part of hierarchy, a tree of some kind
+        1.2 creating of process is basically cloning the parent and changing some parts like execution code
+            that grants the inheritance of handlers etc.
+
+        HUGE disadvantage: process can become orphaned, his parent having been killed prematurely.
+             crutch: orphaned one can be hinged to INIT
+
+        But! Sigchild being send to parent, who ignores the signal, results in creation of zombie process - parent
+             never reads the return code from his child process
+             Zombie processes healed only by reboot, because they do not answer any signals - you cannot send a signal 
+             to a row in the table :) and cannot be cleared because it would be a crutch
+             zombies do not take up memory, but take up a row in the table of processes
+
+    Windows:
+        2.1 process is being launched from core, inheriting from local init all the time
+        disadvantage: creating a completely fresh structure does open way for some vulnerabilities to substitute smth important
+        advantage: no zombie process ever created
+
+OS obligations to processes:
+    1 resource management
+        in need of resource, app sends a syscall
+    2 process isolation
+        address space protection
+        open resources protection
+    3 scheduling
+    4 dispatcherisation of the processes
+        change statuses, change register context
+        trouble: change statuses of at least 2 processes is at least 2 operations, but they need to be done in an atomic way
+    5 process communication
+        signals, files... everything is slow
+        OS should support some shared resource
+        shared memory buffer
+        tcp protocol communication via sockets
+
+    6 termination and shutdown of processes and threads
+
+SCHEDULING
+    process is often represented by a finite automata
+       simplest one: -->(sleep)<->(runs)->
+
+       actual:       -->(ready)----
+                        /          \
+                      (sleep)<-->(runs)-->
+
+       with modifications: exceptions, born, destroyed

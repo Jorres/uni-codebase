@@ -1,0 +1,31 @@
+1) OS is an interface. Between what?
+2) What are program dispatchers?
+3) What are memory controllers?
+4) What was the initial method of program execution? (before code reusing)
+5) What illusion does a program maintain of its' own execution?
+6) What measures should be taken to maintain this illusion?
+7) What is the ideal clause of hardware effectiveness?
+
+8) What is the mobile operational system? // probably he meant mobile == non-industrial
+9) Tell the story of first high-level language and associated OS
+10) What branches of OS took their birth in Unix?
+11) Tell the short story of Apple and Microsoft
+12) Who is Richard Stollman? GNU, copyleft concept, GPL
+
+14) What are layers of organization of OS? (5)
+15) What goals does an average OS try to reach?
+16) What functions does an average OS have?
+
+17) What subsystems does an OS have? What does each of these? (6 of them)
+
+18) Describe properties of program OS architecture it should possess.
+19) Describe advantages and disadvantages of monolithic OS architecture.
+19.5) What measures are taken to keep disadvantages of monolithic OS architecture at bay?
+20) Describe advantages and disadvantages of microkernel OS architecture.
+21) What is nanocore and hybrid core architecture?
+21.5) What was the argument between Andrew Tannenbaum and Linus Torvalds?
+
+22) Give definition to a process and explain why every part is essential.
+23) List obligations of OS towards processes.
+24) How processes are organised under Linux or Windows?
+25) Describe the automata for describing the state of the process for OS.

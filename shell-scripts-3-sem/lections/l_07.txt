@@ -1,0 +1,123 @@
+  ===  Scheduling  ===
+
+reminder from the previos lecture:
+    in modern OS scheduling is done on thread levels
+    OS has a finite automata for the process
+
+================================================================
+
+For scheduling:
+    what is good? what are criteria for how good our scheduling is?
+    
+    1) fairness criteria
+    2) effectiveness - attempt to make 100% use of the resources
+        stories about putting buckets of snow in the server room
+    trouble! fairness and effectiveness are controversial - what the process wants often 
+        goes into contradiction with the concept of loading resources (2 processes, one with little cpu-burst
+        and one with bigger simply require different amount of time)
+
+    3) reducing total execution time for each process - go away as soon as possible
+        process who just waits, not running, still consumes some static resources like address space,
+        scheduling algorithms etc. -> the earlier it exits the better
+        again tales aboit the supermarket
+
+    4) reducing total time spent waiting for each process
+        just because users are pussies and do not understand a thing. sometimes it is not profitable!
+
+    5) reducing response time
+        just for users again - impossible to use Skype otherwise
+        realtime OS must guarantee that
+
+================================================================
+
+    properties of the scheduler:
+        reproducable - in close conditions close scheduling
+        minimal overhead costs
+        scaling - good complexity function and statistically good time
+
+================================================================
+
+    information, on which we schedule processes
+        static and dynamic parameters
+        system and process parameters
+        2*2 they form a square:
+
+        static system: cores, RAM, different bandwidths
+        dynamic system: FREE resources, FREE portion of bandwidth
+        static process: priority, rights to resources (schedulers might know in advance it won't ask)
+        dynamic process: cpu burst, i\o burst - how much time process really needs 
+                            (his behaviour when not contained)
+                            THESE PARAMETERS CANNOT BE MEASURED! process is a blackbox
+                            
+================================================================
+
+    algorithms - preemptive and non-preemptive
+
+        non-preemptive - if I passed a control to the process, it will calculate until stops
+        preemtive are able to interrupt executing processes and push the out
+
+    I) FCFS - First Come First Served - a queue, pop and let calculate until finished
+        sample: queue = { 13, 4, 1 }
+                        E is for execution, W for waiting
+                        1 - EEEEEEEEEEEEE
+                        2 - WWWWWWWWWWWWWEEEE
+                        3 - WWWWWWWWWWWWWWWWWE
+                        obvious example of how bad it can be
+
+    II) RoundRolling - define a quantum of execution - give everybody equal amount,
+                       if not completed, push back to queue
+                       1 - EEEEWWWWWEEEEEEEEE
+                       2 - WWWWEEEE
+                       3 - WWWWWWWWE
+        it could be proved that without overhead costs the smallest quantum of time is the winner
+        but with overhead present, we just trying to maximize the function - 1 extremum
+        but it's not possible in dynamic environment with new processes constantly appearing and leaving.
+
+    III) SJF - Shortest Job First
+        evaluate cpu burst and launch the lowest
+        could be both preemptive and non-preemptive, but non-preemptive is uninteresting - 
+                                                     taking heavy job at one moment, a lot of smaller jobs can come and wait
+        hybrid of SJF&&RR:
+        quantum = 2
+           exec time  arrival   1 2 3 45 6 7 8 9
+        p0 6           0               UUUUUU
+        p1 2           2          UU
+        p2 7           6                     UUUUUUU
+        p3 5           0        UU  UUU
+
+        but that's actually not that fair(((
+
+    IV) algorithm of guaranteed scheduling
+        N users, assign roughly 1/N of time to each
+         A_i - this user time
+         B_i - all time
+
+         A_i * N
+         ------- - coefficient of fairness, take minimum after a single batch
+           B_i
+
+    V) but majority of OS had a look at these... and decided to use a manual selected priority. 
+       (in all the previous cases priority was automatically calculated, thus restricting 
+        the ability to control the execution from the outer world)
+
+       Multilevel queues
+           k queues exist, in each queue there may be multiple processes
+           choose the process from the minimal queue
+
+           (inside a single queue - RoundRolling or whatever)
+           downside - process hunger is very uncommon
+
+       Multilevel queues with feedback - process can change one's priority
+           timeout - if never executed within time period, shifted to lower queue
+           and when finally executed, it's being pushed back to his initial queue!
+           this algorithm turned out to be a good one. 
+            +: we calculate nothing
+            +: if system is not loaded, any process will be executed no matter of priority
+            +: if pressure grows, it will be slowly pushed back and executed slowly
+
+            SJF modification: assign to queues quant sizes
+                              8 16 32 ... tacts
+                              and if process executed within his queue size, cool, he stayed
+                              else he needs longer quant and moved back
+
+            Turned out to be so proficient almost every OS uses it at some point

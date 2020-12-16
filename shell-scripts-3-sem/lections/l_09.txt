@@ -1,0 +1,123 @@
+Process communication
+        1) each process thinks that he is alone.
+        2) sometimes he is required to communicate.
+           for example, when trying to possess an undividable resource.
+           process must signal OS that he is about to possess some resource.
+           So how this communication happens?
+
+         Criteria of resource management:
+            progress must be present at all time // at any time resurs is busy (or no ready processes)
+            process hunger must not occur        // I and II are swapping resource, III never gets the chance
+            deadlocks must not occur             // basically the mutex logic, nevermind
+            one-at-a-time posession of resource  // at any time only single process using resource
+
+         Problem of this management is solved on hardware-software level.
+
+Critical section - section of code requiring an ultimate access to the resource.
+OS cannot predict when a process will call for the resource, but process can make system call
+-> communication must be initiated by a process - ask, get, use, give back
+
+Approaches to ensure one-at-a-time-ness
+1) single-task mode
+    +: simple
+    -: any communication requirement - error, interruption - will kill the system
+   but this way has it's limited use - system atomic operation, like context changing
+2) Global lock variable algorithm
+    system-call accessable global lock variable
+        * while (lock);
+        * lock = 1;
+        * // work
+        * lock = 0
+    bad case: interrupt a process just finished while (lock); and didn't put lock = 1 yet
+              second checks - no lock put, enter critical section, start executing
+              another interruption, system returns control to process 1 who enters critical section as well.
+3) algorithm of strict order
+    while (turn != mine);
+    // critical section
+    turn = next person's
+    interruptions do not hamper. But there may be not any progress
+    turn is 0, but 0 does not want to enter critical sections, so 1 never gets the chance to use it
+
+4) alrorithm of readiness flags
+    array of readiness flags
+    * put my flag to 1
+    * wait until opponent's flag is 0
+    * enter section
+    * put my flag to 0
+
+    deadlock can occur: first has put flag, interrupted; second has put flag, interrupted; deadlock.
+
+Hypothesis: it is not possible to produce a software solution
+            this hypothesis stood for almost 20 years!
+
+5) algorithm of politeness
+
+    flags[2];
+    flags[cur] = 1;
+    turn = 1 - cur;
+    while (flags[1 - cur] == 1 && turn == 1 - cur) {
+        if none wanting or opp returned pleasantry
+    }
+    flags[cur] = 0;
+
+    unfortunately, it is non-scalable to the larger amount of processes
+    live-lock: in a circle processes are changing pleasantries, but once a new emerges,
+    we might want to start from the beginning again.
+    It is simply non-effective.
+
+6) attempt to make use of atomic operations - hardware support
+    instruction: check a variable and set it, if check successful
+    global lock variable is succesfully upgraded
+
+7) widenization of 2-non-possession to (n + 1)-non-possession
+
+8) conveyer problem:
+    command 1 | command 2 // prohibit read of old data, prohibit write to full buffer, prohibit simultaneous access
+
+    Dijkstra's semafore algorithm
+    semafore is non-negative integer s
+    two operations allowed:
+      A while (s == 0);
+      A s--;
+
+      B w++;
+
+    producer-consumer problem
+    semaphore mutex = 1, empty = bufsize, full = 0;
+
+    consumer:        producer:
+        p(full)          p(empty)
+        p(mutex)         p(mutex)
+        read data        append data
+        v(mutex)         v(mutex)
+        v(empty)         v(full)  // mutex - mutual exlusion - semaphore
+
+9) deadlock
+         R1 --  -- P1
+              \/
+              /\
+         R2 --  -- P2 // deadlock situation
+   we must not allow R1 take P1 if P2 is taken by R2
+   solution must be scalable! deadlock combinations grow exponentially
+
+    Theorem: Clauses for existance of a deadlock:
+        existance of mutual exclusion
+        holding way - process if wanting some resource does not give back all the others
+        no preemption - resource can only be given back by process
+        circular wait - each is holding back one resource and asking for a resource [(i + 1) % n]
+    If one of the clauses is missing, deadlock can not occur.
+
+    Ways for ignoring deadlocks
+        1) ignore
+        2) prevent
+        3) locate
+        4) restore when it happened
+
+    Most OS use... 1 solution. Overhead costs for locating and preventing it are large.
+    For most of resources however it is possible to prevent with a simple solution -
+        queue for a printer, for example. Put in a queue for print and say to app call has been completed
+    Another solution: let the process ask for all the resources - and gets all or nothing
+    Another solution: set priorities for processes and preempt, when more prioritized process asking
+        Only possible when "restore the state" is possible - not in the middle of printer spitting paper
+
+    Btw: Ubuntu is freedom from Zulu

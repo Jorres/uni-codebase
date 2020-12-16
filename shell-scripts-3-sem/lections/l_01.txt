@@ -1,0 +1,52 @@
+operational system == interface (user, programs, computing core)
+
+the first ancestors of operating systems were program dispatchers, who did nothing but automated linking.
+why this linking was needed? 
+first implementations of computations were as following:
+    manually set data and code into memory
+    manually set IP register to needed value
+
+that actually meant that reusing code was impossible, so in an attempt to reserve some memory for 
+    subprograms that were often used, program dispatchers came along, calculating jumps on the code
+
+then mem controllers came along, making processing of big chunks of data available 
+    mem ctrollers were simple (but they job was simple as well) so they did their job outside of CPU, 
+    job they did was unpredictable as outer memory devices like hard drives have unpredictable response time
+    so a mechanism for syncing mem ctrollers with CPU was needed, and interruptions came along 
+
+           ---------
+           |  RAM  | <-------------------------
+           ---------                          |
+               |                              |
+           ---------                          |
+IN/OUT <-> |  CPU  | <-----> CTROLLERS <---> DRIVES
+           |       |   |
+           |       |  interruptions
+           ---------
+
+as i see it - the initial problem of not being identical in requirements to different resources
+    (i\o, computational power, memory load) is ideally solved with keeping all parts of the computer 100% loaded.
+    that involved using multiple processes at once, to utilize memory, i\o and computing for example for
+    3 different processes at the same time. 
+
+
+PROCESSOR SHARING
+    giving to different processes some proportionally weighted opportunity to use CPU
+    so they can easily be relocated from "cpu-using" to "i\o using" in no time
+    this has it's downtime costs, for example, register saving 
+    but average busyness just got higher
+
+first              first
+-------\         /--------\
+        \       /          \
+         -------            --------
+          second
+
+but historically every program is written in a way as if it is the only thing executing on computer
+    (involving adresation from zero in memory and the assumption that code is located in one piece)
+
+so virtual memory was created, to make that illusion from the program (to take the cost of multiprogram execution off
+    the programmers' shoulders, so to say)
+
+memory protection - allowing a process to access only the memory in his posession
+

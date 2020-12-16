@@ -1,0 +1,50 @@
+bayki pro create OS from scratch == 180 billion dollars
+
+Process management subsystem
+    process is a data structure
+    PCB - process control block
+      process attributes:
+        -- context of the process execution
+        -- info about associated resources (e.g address space)
+        -- story of the process (how the load changes, to help scheduling)
+        (get the idea of how fast the process would be)
+
+Memory management subsystem
+    virtual memory concept (translator virtual <--> factual)
+        spoiler - paging system (recall c++, multilevel page tables)
+
+    securing address (more difficult with paging)
+
+File management subsystem
+    transferring data from hardware to USB - completely different organization system(! miracle !)
+    rule - logical block is a linear space
+
+    catalog management subsystem - (syn - directory)
+        ex: Windows - tree hierarchy, a file can only be located in single directory
+            Linux - network hierarchy, a file can lie anywhere
+
+
+Outer devices management subsystem
+    universal mechanism of i\o (data flow to and from)
+
+    driver - software, which knows both about the os and the device
+
+    plug and pray
+
+Data protection and administration subsystem
+    lots of users per machie -> we need way to limit and divide their access
+    admin + user mechanism
+
+    Windows has admin, but from uzvers even admin is limited
+    Linux - root can do everything
+
+    identification = assign id to user, give him id and password once
+    authentification = procedure of checking identification
+    authorization = give access to user after authentification
+
+    a problem arises when computer cannot track whether user is the same as the one who loginned.
+
+user interface subsystem
+    bayki pro integrate bash into windows
+    question - gui and command line. What is primary?
+
