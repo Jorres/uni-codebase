@@ -1,0 +1,54 @@
+A couple of notes on differences between cpp and java
+
+1) java can be sort of... compiled OR interpreted. JVM is an interpreter that generates machine code on the fly.
+
+2) Everything must be in class. Global data does not exist. You might want to have static data members or methods. No structs, enums or unions.
+
+2.5) No preprocessor. Java doesn't look at program as a pile of text.
+
+3) No need for forward declaration. Compiler handles this for us.
+
+4) No scope resolution operator ::, only ., because EVERYTHING is in a class.
+
+5) Everything is an object and is created on heap, except for 8 primitives. But even those have wrappers to be able to be interpreted as objects.
+
+6) Char type is the only "unsigned" integral type, and it is 2 bytes and is able to represent 16-bit unicode.
+
+7) Arrays. Always on the heap, except for the primitives (unsure, maybe even those on heap). Runtime bound-check. Assignment is simply messing with internal pointers since they are on the heap.
+
+8) Packages are used to address the issue with namespaces. And since everything is in a class, scope resolution is simple.
+
+9) Objects are defaulted to null, primitives are defaulted to 0 or equivalent.
+
+10) There is no cpp-styled pointer in java, 'new' call creates a reference. Hovewer, unlike c++, they can be created and uninitialized or rebound.
+
+11) There is no pointer ariphmetics. Unability to point at an arbitrary place in memory. Passing by reference.
+
+12) There is no need for copy-constructors, everything is passed by reference. Use workarounds such as making a copy of object at caller's location and code class in a way that no public method changes your data.
+12.5) No const keyword, and no pass-by-value semantics. If you want the equivalent of pass-by-value, you do it manually. 
+
+13) Java does not have destructors, and lifetime is determined by garbage collector. There is 'finalize', but only responsible for the release of resources, since called by garbage collector.
+13.5) No destructors mean that you have to invoke some special cleaners after catching an exception with a keyword 'finalize'.
+
+14) Everything is inherited from Object ergo guaranteed to have at least Object interface. C++ is the only OO language that does not seem to impose single-rooted hierarchy.
+
+15) No template implementations or parameterized types. There are Vector, Stack, Hashtable, but they are not designed for efficiency.
+
+15.5) Generics are some kind of dirty workaround and syntactic sugar to automate runtime casts.
+
+16) Memory leaks are much harder to achieve, but somehow not impossible. But garbage collector makes any program heavier by a constant and makes Java unsuitable for smaller tasks, where this constant is greater than the useful payload. Although potential ++ are greater in big projects than this drawback.
+
+17) Nested classes. In c++ that was purely for code organization. In java nested classes secretly have handle to the outer classes, where they are defined. Also, private, protected and public needs to be defined for each member.
+
+18) Inheritance has different syntax - keywords extends and super. However, super allows to reach only 1 class up. Also, no way to classify the type of inheritance - no way to limit address to members of the ancestor class who were declared there as public.
+
+19) There is no member initialization, but compiler forces you to initialize your ancestor at the beginning of your constructor.
+
+20) Introduction of 'interface' concept and a keyword. 'implements' is like inheriting from an interface, but actually just a contract to provide the implementation for every method defined in the interface class.
+
+22) Exception handling is different, more robust, and checked at compile time instead of cpp runtime exceptions. You have to 'pre-allow' your code to throw some subset of exceptions, Java checks all potential exception paths for you.
+
+23) Java has no operator overloading, only method overloading.
+
+
+25) Relatively simple built-in support for multithreading.
