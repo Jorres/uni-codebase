@@ -1,0 +1,80 @@
+module Modulename where
+
+fun_name :: (fun_in_type_1, fun_in_type_2...) -> 
+            (fun_out_type_1, fun_out_type_2...)
+fun_name arg1 arg2 ... = statement
+
+statement = call of other function, math expression
+
+
+operator of choice:
+fun_name arg1 arg2 ... | arg1 < 1 statement_1
+                       | arg2 < 2 statement_2
+                       ...
+                       | otherwise statement_n+1
+
+Special 'where' syntax:
+    fun_name arg1 ... = statement where 
+             function_definition_1
+             function_definition_2
+
+Lambda functions
+
+(\x -> 2 * x + 7) 10
+27
+
+f' = \x -> 2 * x + 7
+
+From 2 args
+\x -> \y -> sqrt $ x * x + y * y
+\x y -> sqrt $ x * x + y * y
+
+Lists
+[]
+(++) - concat
+(:) - add to head
+
+Tuples - lists of fixed size, cortages
+(True, False)  // mixfix style
+(,) True False // prefix style
+
+class Eq a where
+    (==) :: a -> a -> Bool
+    (/=) :: a -> a -> Bool
+
+    x /= y = not (x == y) // default 
+    x == y = not (x /= y) // default - interesting, can be cyclic
+    // if first is specified, second is automatically constructed
+    // or vice verse
+    // but if none are specified, an error would rightfully occur
+
+how to implement the instance?
+
+instance Eq Bool where
+    True == True = True          // sopostavlenie s obrazcom
+    False == False = True
+    _ == _ = False
+
+    x /= y = not (x == y) // overloaded, if default is specified
+
+instance can also be polymorphic
+
+instance (Eq a, Eq b) => Eq(a, b)
+    p1 == p2 = fst p1 == fst p2 && snd p1 == snd p2
+
+class (Eq a, Printable a) => MyClass a where
+    ...
+
+show (1,2) "1,2"
+
+read "1" :: Double 1.0
+
+reads "5 rings" :: [(Int, String)] [(5, " rings")]
+    
+List comprehension
+[x | x <- [1, 2, 3]]
+[(x, y) | x <- [1..3], y <- [x..3]] // think of it as of nested loops
+filters are also allowed
+[x | x <- [1..10], even x]
+
+

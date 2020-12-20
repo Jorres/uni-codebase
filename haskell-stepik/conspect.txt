@@ -1,0 +1,61 @@
+Polymorphic functions
+    Parametrical - single implementation for all possible inputs
+
+    // identity function, parametrical polymorhism
+    let id x = x
+    :type id // id :: t -> t // t is 'type variable'
+
+    :t undefined // a
+    undefined can be put in any part of expression
+
+    Special - basically an overloading
+        '+' is special, since addition of integers and doubles is
+            really different in their core.
+
+functions of highest order - 
+functions, accepting other functions as arguments
+apply2
+
+The idea of partial function application is called carrying
+Because of the surname of the person who populated the idea
+
+So, functions carry and uncarry exist, turning 2-slot functions
+into accepting a pair and accepting two separate arguments' versions
+
+Class type
+[Num] - is a special interface. Double is Num, Int is Num, Char is not.
+
+Class types can extend one another - like inheritance, but for 
+interfaces rather than implementations
+
+Tales about serialization, deserialization
+show
+
+read - error message or full parse / reads - []
+
+Class Bounded, Class Enum
+Enum defines succ and pred
+Bounded defines minBound and maxBound (of a class, minBound :: Int)
+
+Structure of numerical types
+
+Num -> Real -> Integral: Int, Integer
+         \
+          -> RealFrac, RealFloat, Fractional -> Floating: Float, Double
+
+List comprehension
+Comprehension over something is the language idiom, where data
+is mainly described through that specific something.
+
+For example, mathematicians love set comprehension, however since
+Haskell deals with functions as if it was data, and sets require
+equality between its elements, and by the Reise theorem we cannot 
+compare functions (have to solve the halting problem at least, 
+which is unsolvable). So Haskell designers had to reject set 
+comprehension and come to list comprehension. List does not imply
+its element have equality relations.
+
+All the lists operations in terms of list comprehension will also work
+for strings, since strings are nothing more than a syntactic sugar for lists of char
+
+
