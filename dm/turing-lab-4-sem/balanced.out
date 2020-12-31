@@ -1,0 +1,25 @@
+start: receive
+accept: A
+reject: B
+blank: _
+
+receive ( -> push_back P <
+
+push_back P -> push_back P <
+push_back S -> push_back S <
+push_back _ -> go_back S >
+
+go_back S -> go_back S >
+go_back P -> go_back P >
+go_back ( -> receive ( ^ 
+go_back ) -> receive ) ^ 
+go_back _ -> receive _ ^ 
+
+receive ) -> pop_back P <
+pop_back P -> pop_back P <
+pop_back S -> go_back P >
+
+receive _ -> check_no_S _ <
+
+check_no_S P -> check_no_S P <
+check_no_S _ -> A _ ^

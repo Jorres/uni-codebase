@@ -1,0 +1,74 @@
+start: first
+accept: A
+reject: B
+blank: _
+
+first 0 -> first_has 2 >
+first 1 -> first_has 3 >
+first 2 -> first 2 >
+first 3 -> first 3 >
+
+first < -> second_f- < >
+
+first_has 0 -> first_has 0 >
+first_has 1 -> first_has 1 >
+first_has < -> second_f+ < >
+
+second_f+ 0 -> go_till_< 2 <     
+second_f+ 1 -> go_till_< 3 <
+second_f+ 2 -> second_f+ 2 >
+second_f+ 3 -> second_f+ 3 >
+second_f+ _ -> B _ ^
+
+second_f- 0 -> A _ ^
+second_f- 1 -> A _ ^
+second_f- 2 -> second_f- 2 >
+second_f- 3 -> second_f- 3 >
+second_f- _ -> compare_legally _ ^
+
+go_till_< 2 -> go_till_< 2 <
+go_till_< 3 -> go_till_< 3 <
+go_till_< < -> go_back < <
+
+go_back 0 -> go_back 0 <
+go_back 1 -> go_back 1 <
+go_back 2 -> first 2 >          
+go_back 3 -> first 3 >
+
+compare_legally _ -> go_to_beginning _ <
+go_to_beginning 2 -> go_to_beginning 0 <
+go_to_beginning 3 -> go_to_beginning 1 <
+go_to_beginning < -> go_to_beginning < <
+go_to_beginning _ -> compare_current _ >
+
+compare_current 0 -> first_0 H >
+compare_current 1 -> first_1 H >
+
+first_0 0 -> first_0 0 >
+first_0 1 -> first_0 1 >
+first_0 < -> second_f0 < >
+
+first_1 0 -> first_1 0 >
+first_1 1 -> first_1 1 >
+first_1 < -> second_f1 < >
+
+second_f0 H -> second_f0 H >
+second_f1 H -> second_f1 H >
+
+second_f0 1 -> A _ ^
+second_f1 0 -> B _ ^
+
+second_f0 0 -> cmp_go_till_< H <
+second_f1 1 -> cmp_go_till_< H <
+
+cmp_go_till_< 0 -> cmp_go_till_< 0 <
+cmp_go_till_< 1 -> cmp_go_till_< 1 <
+cmp_go_till_< H -> cmp_go_till_< H <
+cmp_go_till_< < -> cmp_go_till_H < <
+
+cmp_go_till_H 0 -> cmp_go_till_H 0 <
+cmp_go_till_H 1 -> cmp_go_till_H 1 <
+cmp_go_till_H H -> compare_current H >
+
+compare_current < -> B _ ^
+

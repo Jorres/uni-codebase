@@ -1,0 +1,350 @@
+start: prepare
+accept: A
+reject: B
+blank: _
+
+prepare 0 -> put_< 0 <
+prepare 1 -> put_< 1 <
+put_< _ -> copy_char < >
+copy_char 0 -> put_0_on_blank Z < 
+copy_char 1 -> put_0_on_blank E < 
+
+put_0_on_blank 0 -> put_0_on_blank 0 <
+put_0_on_blank 1 -> put_0_on_blank 1 <
+put_0_on_blank < -> put_0_on_blank < <
+put_0_on_blank _ -> go_till_< 0 >
+
+put_Q_on_blank 0 -> put_Q_on_blank 0 <
+put_Q_on_blank 1 -> put_Q_on_blank 1 <
+put_Q_on_blank E -> put_Q_on_blank E <
+put_Q_on_blank Z -> put_Q_on_blank Z <
+put_Q_on_blank < -> put_Q_on_blank < <
+put_Q_on_blank Q -> put_Q_on_blank Q <
+put_Q_on_blank _ -> go_till_< Q >
+
+go_till_< 0 -> go_till_< 0 >
+go_till_< 1 -> go_till_< 1 >
+go_till_< Q -> go_till_< Q >
+go_till_< < -> go_till_char < >
+
+go_till_char Z -> go_till_char Z >
+go_till_char E -> go_till_char E >
+go_till_char 0 -> put_Q_on_blank Z <
+go_till_char 1 -> put_Q_on_blank E <
+go_till_char _ -> prepare_mult _ <
+
+prepare_mult Z -> prepare_mult Z <
+prepare_mult E -> prepare_mult E <
+prepare_mult Q -> prepare_mult Q <
+prepare_mult < -> prepare_mult < <
+prepare_mult 0 -> prepare_mult 0 <
+prepare_mult 1 -> prepare_mult 1 <
+prepare_mult _ -> put_start_fact * <
+put_start_fact _ -> to_start_position 1 >
+
+to_start_position 0 -> to_start_position 0 >
+to_start_position 1 -> to_start_position 1 >
+to_start_position * -> to_start_position * >
+to_start_position Q -> check_if_needed Q ^
+to_start_position < -> check_if_needed < <
+
+check_if_needed Q -> carrying_0 C >
+check_if_needed 0 -> carrying_0 2 >
+check_if_needed 1 -> carrying_1 3 >
+
+carrying_0 0 -> carrying_0 0 >
+carrying_0 1 -> carrying_0 1 >
+carrying_0 Q -> carrying_0 Q >
+carrying_0 < -> carrying_0 < >
+carrying_0 Z -> back_equal 0 <
+carrying_0 E -> go_rightmost_to_clean E >
+carrying_0 _ -> cleanup _ <
+
+back_equal 0 -> back_equal 0 <
+back_equal 1 -> back_equal 1 <
+back_equal < -> back_equal < <
+back_equal C -> get_next C >
+back_equal 2 -> get_next 2 >
+back_equal 3 -> get_next 3 >
+get_next 0 -> carrying_0 2 >
+get_next 1 -> carrying_1 3 >
+get_next < -> go_rightmost < >
+
+go_rightmost_to_clean Z -> go_rightmost_to_clean Z >
+go_rightmost_to_clean E -> go_rightmost_to_clean E >
+go_rightmost_to_clean 0 -> go_rightmost_to_clean 0 >
+go_rightmost_to_clean 1 -> go_rightmost_to_clean 1 >
+go_rightmost_to_clean _ -> clean_comparison_before_< _ <
+clean_comparison_before_< 0 -> clean_comparison_before_< Z <
+clean_comparison_before_< 1 -> clean_comparison_before_< E <
+clean_comparison_before_< Z -> clean_comparison_before_< Z <
+clean_comparison_before_< E -> clean_comparison_before_< E <
+clean_comparison_before_< < -> clean_comparison < <
+
+clean_comparison 0 -> clean_comparison 0 <
+clean_comparison 1 -> clean_comparison 1 <
+clean_comparison C -> clean_comparison Q <
+clean_comparison Q -> clean_comparison Q <
+clean_comparison 2 -> clean_comparison 0 <
+clean_comparison 3 -> clean_comparison 1 <
+clean_comparison * -> go_to_++ * >
+go_to_++ Q -> go_to_++ Q >
+go_to_++ 0 -> go_to_++ 0 >
+go_to_++ 1 -> go_to_++ 1 >
+go_to_++ < -> do++ < <
+
+
+go_to_first_mult 0 -> go_to_first_mult 0 <
+go_to_first_mult 1 -> go_to_first_mult 1 <
+go_to_first_mult _ -> MULT_start _ >
+MULT_end 0 -> go_to_* 0 >
+MULT_end 1 -> go_to_* 1 >
+
+go_to_* 0 -> go_to_* 0 >
+go_to_* 1 -> go_to_* 1 >
+go_to_* * -> check_if_needed * >
+
+do++ 0 -> back_to_check 1 <
+do++ Q -> back_to_check 1 <
+do++ 1 -> do++ 0 <
+
+back_to_check 0 -> back_to_check 0 <
+back_to_check 1 -> back_to_check 1 <
+back_to_check Q -> back_to_check Q <
+back_to_check * -> go_to_first_mult * <
+
+carrying_1 0 -> carrying_1 0 >
+carrying_1 1 -> carrying_1 1 >
+carrying_1 Q -> carrying_1 Q >
+carrying_1 < -> carrying_1 < >
+carrying_1 Z -> go_rightmost Z >
+carrying_1 E -> back_equal 1 <
+carrying_1 _ -> cleanup _ <
+
+go_rightmost 0 -> go_rightmost 0 >
+go_rightmost 1 -> go_rightmost 1 >
+go_rightmost E -> go_rightmost E >
+go_rightmost Z -> go_rightmost Z >
+go_rightmost _ -> cleanup _ <
+
+cleanup * -> go_leftmost _ <
+cleanup E -> cleanup _ <
+cleanup Z -> cleanup _ <
+cleanup 0 -> cleanup _ <
+cleanup 1 -> cleanup _ <
+cleanup 2 -> cleanup _ <
+cleanup 3 -> cleanup _ <
+cleanup Q -> cleanup _ <
+cleanup < -> cleanup _ <
+
+go_leftmost 0 -> go_leftmost 0 <
+go_leftmost 1 -> go_leftmost 1 <
+go_leftmost _ -> A _ >
+
+MULT_start 0 -> MULT_sign 0 <
+MULT_start 1 -> MULT_sign 1 <
+MULT_sign _ -> MULT_zero + <
+MULT_zero _ -> MULT_go 0 >
+MULT_go 0 -> MULT_go 0 >
+MULT_go 1 -> MULT_go 1 >
+MULT_go + -> MULT_go + >
+MULT_go Q -> MULT_go Q >
+MULT_go * -> MULT_go * >
+MULT_go < -> MULT_multiply < <
+
+MULT_multiply * -> MULT_revert_old * >
+MULT_multiply Q -> MULT_revert_old Q >
+MULT_revert_old E -> MULT_revert_old 1 >
+MULT_revert_old Q -> MULT_revert_old Q >
+MULT_revert_old Z -> MULT_revert_old 0 >
+MULT_revert_old < -> MULT_go_till_**_clean < <
+
+MULT_go_till_**_clean 0 -> MULT_go_till_**_clean 0 <
+MULT_go_till_**_clean 1 -> MULT_go_till_**_clean 1 <
+MULT_go_till_**_clean Q -> MULT_go_till_**_clean Q <
+MULT_go_till_**_clean * -> MULT_clean_after_plus * <
+
+MULT_multiply 0 -> MULT_go_till_** Z <
+MULT_multiply E -> MULT_go_till_** E <
+MULT_go_till_** 0 -> MULT_go_till_** 0 <
+MULT_go_till_** 1 -> MULT_go_till_** 1 <
+MULT_go_till_** Q -> MULT_go_till_** Q <
+MULT_go_till_** * -> MULT_skip * <
+MULT_skip 0 -> MULT_back_zero 0 <
+MULT_skip 1 -> MULT_back_one 0 <
+
+MULT_back_zero 0 -> MULT_back_zero 0 <
+MULT_back_zero 1 -> MULT_back_one 0 <
+MULT_back_one 0 -> MULT_back_zero 1 <
+MULT_back_one 1 -> MULT_back_one 1 <
+MULT_back_zero + -> MULT_back_plus 0 <
+MULT_back_one + -> MULT_back_plus 1 <
+
+MULT_back_plus 0 -> MULT_back_zero + <
+MULT_back_plus 1 -> MULT_back_one + <
+MULT_back_zero _ -> MULT_return_to_mult 0 >
+MULT_back_one _ -> MULT_return_to_mult 1 >
+
+MULT_return_to_mult 0 -> MULT_return_to_mult 0 >
+MULT_return_to_mult 1 -> MULT_return_to_mult 1 >
+MULT_return_to_mult Q -> MULT_return_to_mult Q >
+MULT_return_to_mult + -> MULT_return_to_mult + >
+MULT_return_to_mult * -> MULT_return_to_mult * >
+MULT_return_to_mult Z -> MULT_multiply Z <
+MULT_return_to_mult E -> MULT_multiply E <
+
+MULT_multiply 1 -> MULT_go_leftmost E <
+MULT_go_leftmost 0 -> MULT_go_leftmost 0 <
+MULT_go_leftmost Q -> MULT_go_leftmost Q <
+MULT_go_leftmost 1 -> MULT_go_leftmost 1 <
+MULT_go_leftmost * -> MULT_go_leftmost * <
+MULT_go_leftmost + -> MULT_go_leftmost + <
+MULT_go_leftmost _ -> SUM_start _ >
+
+SUM_end 0 -> MULT_go_rightmost 0 >
+SUM_end 1 -> MULT_go_rightmost 1 >
+MULT_go_rightmost 0 -> MULT_go_rightmost 0 >
+MULT_go_rightmost Q -> MULT_go_rightmost Q >
+MULT_go_rightmost 1 -> MULT_go_rightmost 1 >
+MULT_go_rightmost + -> MULT_go_rightmost + >
+MULT_go_rightmost * -> MULT_go_rightmost * >
+MULT_go_rightmost Z -> MULT_multiply Z <
+MULT_go_rightmost E -> MULT_multiply E ^
+
+MULT_clean_after_plus 0 -> MULT_clean_after_plus X <
+MULT_clean_after_plus 1 -> MULT_clean_after_plus X <
+MULT_clean_after_plus + -> MULT_return X <
+MULT_return 0 -> MULT_return 0 <
+MULT_return 1 -> MULT_return 1 <
+MULT_return _ -> MULT_check_leading_zeros _ >
+
+MULT_check_leading_zeros 1 -> MULT_go_to_word_end 1 ^
+MULT_check_leading_zeros 0 -> MULT_check_leading_zeros _ >
+MULT_check_leading_zeros X -> MULT_go_to_word_end 0 ^
+
+MULT_go_to_word_end 0 -> MULT_go_to_word_end 0 >
+MULT_go_to_word_end 1 -> MULT_go_to_word_end 1 >
+MULT_go_to_word_end X -> MULT_start_carrying X <
+
+MULT_start_carrying 1 -> MULT_carrying_1 X >
+MULT_carrying_1 X -> MULT_carrying_1 X >
+MULT_carrying_1 0 -> MULT_put_1 0 <
+MULT_carrying_1 1 -> MULT_put_1 1 <
+MULT_carrying_1 * -> MULT_put_1 * <
+MULT_put_1 X -> MULT_go_to_last_letter 1 <
+
+MULT_start_carrying 0 -> MULT_carrying_0 X >
+MULT_carrying_0 X -> MULT_carrying_0 X >
+MULT_carrying_0 0 -> MULT_put_0 0 <
+MULT_carrying_0 1 -> MULT_put_0 1 <
+MULT_carrying_0 * -> MULT_put_0 * <
+MULT_put_0 X -> MULT_go_to_last_letter 0 <
+
+MULT_go_to_last_letter X -> MULT_go_to_last_letter X <
+MULT_go_to_last_letter 0 -> MULT_start_carrying 0 ^
+MULT_go_to_last_letter 1 -> MULT_start_carrying 1 ^
+MULT_go_to_last_letter _ -> MULT_return_to_beginning _ >
+MULT_return_to_beginning _ -> MULT_return_to_beginning _ >
+MULT_return_to_beginning X -> MULT_return_to_beginning _ >
+MULT_return_to_beginning 0 -> MULT_end 0 ^
+MULT_return_to_beginning 1 -> MULT_end 1 ^
+
+SUM_start 0 -> SUM_start 0 >
+SUM_start 1 -> SUM_start 1 >
+SUM_start + -> SUM_start + >
+SUM_start _ -> SUM_plus_tr0 _ <
+SUM_start * -> SUM_plus_tr0 * <
+
+SUM_plus_tr0 0 -> SUM_plus_tr0_f0 2 <
+SUM_plus_tr0 1 -> SUM_plus_tr0_f1 3 <
+
+SUM_plus_tr1 0 -> SUM_plus_tr1_f0 2 <
+SUM_plus_tr1 1 -> SUM_plus_tr1_f1 3 <
+
+SUM_plus_tr0_f0 0 -> SUM_plus_tr0_f0 0 <
+SUM_plus_tr0_f0 1 -> SUM_plus_tr0_f0 1 <
+SUM_plus_tr0_f0 + -> SUM_plus_tr0_f0_s? + <
+SUM_plus_tr0_f0_s? 2 -> SUM_plus_tr0_f0_s? 2 <
+SUM_plus_tr0_f0_s? 3 -> SUM_plus_tr0_f0_s? 3 <
+SUM_plus_tr0_f0_s? 0 -> SUM_calc_0 X ^
+SUM_plus_tr0_f0_s? 1 -> SUM_calc_1 X ^
+
+SUM_plus_tr0_f-_s? 2 -> SUM_plus_tr0_f-_s? 2 <
+SUM_plus_tr0_f-_s? 3 -> SUM_plus_tr0_f-_s? 3 <
+SUM_plus_tr0_f-_s? 0 -> SUM_calc_0 X ^
+SUM_plus_tr0_f-_s? 1 -> SUM_calc_1 X ^
+SUM_plus_tr0_f-_s? _ -> SUM_clean_at_start _ >
+
+SUM_plus_tr1_f0 0 -> SUM_plus_tr1_f0 0 <
+SUM_plus_tr1_f0 1 -> SUM_plus_tr1_f0 1 <
+SUM_plus_tr1_f0 + -> SUM_plus_tr1_f0_s? + <
+SUM_plus_tr1_f0_s? 2 -> SUM_plus_tr1_f0_s? 2 <
+SUM_plus_tr1_f0_s? 3 -> SUM_plus_tr1_f0_s? 3 <
+SUM_plus_tr1_f0_s? 0 -> SUM_calc_1 X ^
+SUM_plus_tr1_f0_s? 1 -> SUM_calc_2 X ^
+
+SUM_plus_tr1_f-_s? 2 -> SUM_plus_tr1_f-_s? 2 <
+SUM_plus_tr1_f-_s? 3 -> SUM_plus_tr1_f-_s? 3 <
+SUM_plus_tr1_f-_s? 0 -> SUM_calc_1 X ^
+SUM_plus_tr1_f-_s? 1 -> SUM_calc_2 X ^
+SUM_plus_tr1_f-_s? _ -> SUM_clean_at_start 3 ^
+
+SUM_plus_tr0_f1 0 -> SUM_plus_tr0_f1 0 <
+SUM_plus_tr0_f1 1 -> SUM_plus_tr0_f1 1 <
+SUM_plus_tr0_f1 + -> SUM_plus_tr0_f1_s? + <
+SUM_plus_tr0_f1_s? 2 -> SUM_plus_tr0_f1_s? 2 <
+SUM_plus_tr0_f1_s? 3 -> SUM_plus_tr0_f1_s? 3 <
+SUM_plus_tr0_f1_s? 0 -> SUM_calc_1 X ^
+SUM_plus_tr0_f1_s? 1 -> SUM_calc_2 X ^
+
+SUM_plus_tr1_f1 0 -> SUM_plus_tr1_f1 0 <
+SUM_plus_tr1_f1 1 -> SUM_plus_tr1_f1 1 <
+SUM_plus_tr1_f1 + -> SUM_plus_tr1_f1_s? + <
+SUM_plus_tr1_f1_s? 2 -> SUM_plus_tr1_f1_s? 2 <
+SUM_plus_tr1_f1_s? 3 -> SUM_plus_tr1_f1_s? 3 <
+SUM_plus_tr1_f1_s? 0 -> SUM_calc_2 X ^
+SUM_plus_tr1_f1_s? 1 -> SUM_calc_3 X ^
+
+
+SUM_plus_tr0_f0_s? _ -> SUM_retire_tr0 2 >
+SUM_plus_tr0_f1_s? _ -> SUM_retire_tr0 3 >
+SUM_plus_tr1_f0_s? _ -> SUM_retire_tr0 3 >
+SUM_plus_tr1_f1_s? _ -> SUM_retire_tr1 2 >
+
+
+SUM_calc_0 X -> SUM_retire_tr0 2 >
+SUM_calc_1 X -> SUM_retire_tr0 3 >
+SUM_calc_2 X -> SUM_retire_tr1 2 >
+SUM_calc_3 X -> SUM_retire_tr1 3 >
+
+SUM_retire_tr0 0 -> SUM_retire_tr0 0 >
+SUM_retire_tr0 1 -> SUM_retire_tr0 1 >
+SUM_retire_tr0 2 -> SUM_retire_tr0 2 >
+SUM_retire_tr0 3 -> SUM_retire_tr0 3 >
+SUM_retire_tr0 + -> SUM_retire_tr0 + >
+SUM_retire_tr0 _ -> SUM_plus_tr0 _ <
+SUM_retire_tr0 * -> SUM_plus_tr0 * <
+SUM_plus_tr0 2 -> SUM_plus_tr0 2 <
+SUM_plus_tr0 3 -> SUM_plus_tr0 3 <
+SUM_plus_tr0 + -> SUM_plus_tr0_f-_s? + <
+
+SUM_retire_tr1 0 -> SUM_retire_tr1 0 >
+SUM_retire_tr1 1 -> SUM_retire_tr1 1 >
+SUM_retire_tr1 2 -> SUM_retire_tr1 2 >
+SUM_retire_tr1 3 -> SUM_retire_tr1 3 >
+SUM_retire_tr1 + -> SUM_retire_tr1 + >
+SUM_retire_tr1 _ -> SUM_plus_tr1 _ <
+SUM_retire_tr1 * -> SUM_plus_tr1 * <
+SUM_plus_tr1 2 -> SUM_plus_tr1 2 <
+SUM_plus_tr1 3 -> SUM_plus_tr1 3 <
+SUM_plus_tr1 + -> SUM_plus_tr1_f-_s? + <
+
+SUM_clean_at_start 2 -> SUM_clean_at_start 0 >
+SUM_clean_at_start 3 -> SUM_clean_at_start 1 >
+SUM_clean_at_start + -> SUM_clean_at_start + >
+SUM_clean_at_start _ -> SUM_return _ <
+SUM_clean_at_start * -> SUM_return * <
+SUM_return 0 -> SUM_return 0 <
+SUM_return 1 -> SUM_return 1 <
+SUM_return + -> SUM_return + <
+SUM_return _ -> SUM_end _ >

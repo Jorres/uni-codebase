@@ -1,0 +1,100 @@
+
+SUM_start 0 -> SUM_start 0 >
+SUM_start 1 -> SUM_start 1 >
+SUM_start + -> SUM_start + >
+SUM_start _ -> SUM_plus_tr0 _ <
+SUM_start * -> SUM_plus_tr0 * <
+
+SUM_plus_tr0 0 -> SUM_plus_tr0_f0 2 <
+SUM_plus_tr0 1 -> SUM_plus_tr0_f1 3 <
+
+SUM_plus_tr1 0 -> SUM_plus_tr1_f0 2 <
+SUM_plus_tr1 1 -> SUM_plus_tr1_f1 3 <
+
+SUM_plus_tr0_f0 0 -> SUM_plus_tr0_f0 0 <
+SUM_plus_tr0_f0 1 -> SUM_plus_tr0_f0 1 <
+SUM_plus_tr0_f0 + -> SUM_plus_tr0_f0_s? + <
+SUM_plus_tr0_f0_s? 2 -> SUM_plus_tr0_f0_s? 2 <
+SUM_plus_tr0_f0_s? 3 -> SUM_plus_tr0_f0_s? 3 <
+SUM_plus_tr0_f0_s? 0 -> SUM_calc_0 X ^
+SUM_plus_tr0_f0_s? 1 -> SUM_calc_1 X ^
+
+SUM_plus_tr0_f-_s? 2 -> SUM_plus_tr0_f-_s? 2 <
+SUM_plus_tr0_f-_s? 3 -> SUM_plus_tr0_f-_s? 3 <
+SUM_plus_tr0_f-_s? 0 -> SUM_calc_0 X ^
+SUM_plus_tr0_f-_s? 1 -> SUM_calc_1 X ^
+SUM_plus_tr0_f-_s? _ -> SUM_clean_at_start _ >
+
+SUM_plus_tr1_f0 0 -> SUM_plus_tr1_f0 0 <
+SUM_plus_tr1_f0 1 -> SUM_plus_tr1_f0 1 <
+SUM_plus_tr1_f0 + -> SUM_plus_tr1_f0_s? + <
+SUM_plus_tr1_f0_s? 2 -> SUM_plus_tr1_f0_s? 2 <
+SUM_plus_tr1_f0_s? 3 -> SUM_plus_tr1_f0_s? 3 <
+SUM_plus_tr1_f0_s? 0 -> SUM_calc_1 X ^
+SUM_plus_tr1_f0_s? 1 -> SUM_calc_2 X ^
+
+SUM_plus_tr1_f-_s? 2 -> SUM_plus_tr1_f-_s? 2 <
+SUM_plus_tr1_f-_s? 3 -> SUM_plus_tr1_f-_s? 3 <
+SUM_plus_tr1_f-_s? 0 -> SUM_calc_1 X ^
+SUM_plus_tr1_f-_s? 1 -> SUM_calc_2 X ^
+SUM_plus_tr1_f-_s? _ -> SUM_clean_at_start 3 ^
+
+SUM_plus_tr0_f1 0 -> SUM_plus_tr0_f1 0 <
+SUM_plus_tr0_f1 1 -> SUM_plus_tr0_f1 1 <
+SUM_plus_tr0_f1 + -> SUM_plus_tr0_f1_s? + <
+SUM_plus_tr0_f1_s? 2 -> SUM_plus_tr0_f1_s? 2 <
+SUM_plus_tr0_f1_s? 3 -> SUM_plus_tr0_f1_s? 3 <
+SUM_plus_tr0_f1_s? 0 -> SUM_calc_1 X ^
+SUM_plus_tr0_f1_s? 1 -> SUM_calc_2 X ^
+
+SUM_plus_tr1_f1 0 -> SUM_plus_tr1_f1 0 <
+SUM_plus_tr1_f1 1 -> SUM_plus_tr1_f1 1 <
+SUM_plus_tr1_f1 + -> SUM_plus_tr1_f1_s? + <
+SUM_plus_tr1_f1_s? 2 -> SUM_plus_tr1_f1_s? 2 <
+SUM_plus_tr1_f1_s? 3 -> SUM_plus_tr1_f1_s? 3 <
+SUM_plus_tr1_f1_s? 0 -> SUM_calc_2 X ^
+SUM_plus_tr1_f1_s? 1 -> SUM_calc_3 X ^
+
+
+SUM_plus_tr0_f0_s? _ -> SUM_retire_tr0 2 >
+SUM_plus_tr0_f1_s? _ -> SUM_retire_tr0 3 >
+SUM_plus_tr1_f0_s? _ -> SUM_retire_tr0 3 >
+SUM_plus_tr1_f1_s? _ -> SUM_retire_tr1 2 >
+
+
+SUM_calc_0 X -> SUM_retire_tr0 2 >
+SUM_calc_1 X -> SUM_retire_tr0 3 >
+SUM_calc_2 X -> SUM_retire_tr1 2 >
+SUM_calc_3 X -> SUM_retire_tr1 3 >
+
+SUM_retire_tr0 0 -> SUM_retire_tr0 0 >
+SUM_retire_tr0 1 -> SUM_retire_tr0 1 >
+SUM_retire_tr0 2 -> SUM_retire_tr0 2 >
+SUM_retire_tr0 3 -> SUM_retire_tr0 3 >
+SUM_retire_tr0 + -> SUM_retire_tr0 + >
+SUM_retire_tr0 _ -> SUM_plus_tr0 _ <
+SUM_retire_tr0 * -> SUM_plus_tr0 * <
+SUM_plus_tr0 2 -> SUM_plus_tr0 2 <
+SUM_plus_tr0 3 -> SUM_plus_tr0 3 <
+SUM_plus_tr0 + -> SUM_plus_tr0_f-_s? + <
+
+SUM_retire_tr1 0 -> SUM_retire_tr1 0 >
+SUM_retire_tr1 1 -> SUM_retire_tr1 1 >
+SUM_retire_tr1 2 -> SUM_retire_tr1 2 >
+SUM_retire_tr1 3 -> SUM_retire_tr1 3 >
+SUM_retire_tr1 + -> SUM_retire_tr1 + >
+SUM_retire_tr1 _ -> SUM_plus_tr1 _ <
+SUM_retire_tr1 * -> SUM_plus_tr1 * <
+SUM_plus_tr1 2 -> SUM_plus_tr1 2 <
+SUM_plus_tr1 3 -> SUM_plus_tr1 3 <
+SUM_plus_tr1 + -> SUM_plus_tr1_f-_s? + <
+
+SUM_clean_at_start 2 -> SUM_clean_at_start 0 >
+SUM_clean_at_start 3 -> SUM_clean_at_start 1 >
+SUM_clean_at_start + -> SUM_clean_at_start + >
+SUM_clean_at_start _ -> SUM_return _ <
+SUM_clean_at_start * -> SUM_return * <
+SUM_return 0 -> SUM_return 0 <
+SUM_return 1 -> SUM_return 1 <
+SUM_return + -> SUM_return + <
+SUM_return _ -> SUM_end _ >

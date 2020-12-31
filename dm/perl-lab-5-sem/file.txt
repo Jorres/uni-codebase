@@ -1,0 +1,10 @@
+
+this is sample test
+    remove extra empty lines and leading   
+and    trailing spaces
+more lines
+ 
+  
+   
+    
+     

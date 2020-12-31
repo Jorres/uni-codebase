@@ -1,0 +1,40 @@
+start: go_to_end
+accept: A
+reject: B
+blank: _
+
+go_to_end 0 -> go_to_end 0 >
+go_to_end 1 -> go_to_end 1 >
+go_to_end _ -> on_last _ <
+
+on_last 0 -> write_back_0 4 >
+on_last 1 -> write_back_1 5 >
+
+write_back_0 2 -> write_back_0 2 >
+write_back_0 3 -> write_back_0 3 >
+write_back_0 4 -> write_back_0 4 >
+write_back_0 5 -> write_back_0 5 >
+write_back_0 _ -> go_back 2 <
+
+write_back_1 2 -> write_back_1 2 >
+write_back_1 3 -> write_back_1 3 >
+write_back_1 4 -> write_back_1 4 >
+write_back_1 5 -> write_back_1 5 >
+write_back_1 _ -> go_back 3 <
+
+go_back 2 -> go_back 2 <
+go_back 3 -> go_back 3 <
+go_back 4 -> go_back 4 <
+go_back 5 -> go_back 5 <
+go_back 0 -> write_back_0 4 >
+go_back 1 -> write_back_1 5 >
+go_back _ -> clean_number _ >
+clean_number 2 -> clean_number 0 >
+clean_number 3 -> clean_number 1 >
+clean_number 4 -> clean_number _ >
+clean_number 5 -> clean_number _ >
+clean_number _ -> return_to_start _ <
+
+return_to_start 0 -> return_to_start 0 <
+return_to_start 1 -> return_to_start 1 <
+return_to_start _ -> A _ >

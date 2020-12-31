@@ -1,0 +1,67 @@
+start: color_first
+accept: A
+reject: B
+blank: _
+
+color_first 0 -> go_to_end 2 >
+color_first 1 -> go_to_end 3 >
+go_to_end 0 -> go_to_end 0 >
+go_to_end 1 -> go_to_end 1 >
+go_to_end _ -> if_last  _ <
+
+if_last 0 -> check_if_last 0 <
+if_last 1 -> check_if_last 1 <
+
+check_if_last 2 -> last_me 2 >
+check_if_last 3 -> last_me 3 >
+
+check_if_last 0 -> last_not_me 0 >
+check_if_last 1 -> last_not_me 1 >
+
+last_not_me 0 -> go_leftmost 2 <
+last_not_me 1 -> go_leftmost 3 <
+
+go_leftmost 0 -> go_leftmost 0 <
+go_leftmost 1 -> go_leftmost 1 <
+go_leftmost 2 -> color_right 2 >
+go_leftmost 3 -> color_right 3 >
+
+color_right 0 -> go_rightmost 2 >
+color_right 1 -> go_rightmost 3 >
+
+go_rightmost 0 -> go_rightmost 0 >
+go_rightmost 1 -> go_rightmost 1 >
+go_rightmost 2 -> if_last 2 <
+go_rightmost 3 -> if_last 3 <
+
+last_me 0 -> check_me 2 ^
+last_me 1 -> check_me 3 ^
+
+check_me 2 -> find_first_2 P <
+check_me 3 -> find_first_3 P <
+
+find_first_2 G -> find_first_2 G <
+find_first_2 2 -> find_first_2 2 <
+find_first_2 3 -> find_first_2 3 <
+find_first_2 _ -> check_if_first_2 _ >
+find_first_2 C -> check_if_first_2 C >
+
+find_first_3 G -> find_first_3 G <
+find_first_3 2 -> find_first_3 2 <
+find_first_3 3 -> find_first_3 3 <
+find_first_3 _ -> check_if_first_3 _ >
+find_first_3 C -> check_if_first_3 C >
+
+check_if_first_3 2 -> B _ ^
+check_if_first_2 3 -> B _ ^
+check_if_first_3 3 -> go_till_P C >
+check_if_first_2 2 -> go_till_P C >
+
+go_till_P 2 -> go_till_P 2 >
+go_till_P 3 -> go_till_P 3 >
+go_till_P C -> go_till_P C >
+go_till_P G -> go_till_P G >
+go_till_P P -> check_me G  >
+
+check_me _ -> A _ ^
+

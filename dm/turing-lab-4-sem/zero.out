@@ -1,0 +1,9 @@
+start: s
+accept: A
+reject: R
+blank: _
+
+s _ -> A _ ^
+s 0 -> even _ >
+even 0 -> s _ >
+even _ -> R _ ^
