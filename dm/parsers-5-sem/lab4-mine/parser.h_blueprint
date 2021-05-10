@@ -1,0 +1,89 @@
+#ifndef PARSER_H
+#define PARSER_H
+
+#include <iostream>
+#include <vector>
+#include <variant>
+#include <set>
+#include <sstream>
+
+#include "lexer.h"
+
+using namespace std;
+
+enum t_nterm {
+    {place_nterms_here}
+};
+
+using rruleside = vector<variant<t_nterm, t_token>>;
+using first_res  = map<t_nterm, set<t_token>>;
+using follow_res = map<t_nterm, set<t_token>>;
+
+struct t_rule {
+    t_rule(t_nterm from, rruleside to) : from(from), to(to) {} 
+
+    t_nterm from;
+    rruleside to;
+};
+
+struct t_node_data {
+    {place_node_fields_here}
+};
+
+struct node {
+    node(t_token term) : data(term) {}   
+    node(t_nterm term) : data(term) {}   
+
+    variant<t_nterm, t_token> data;
+    vector<node*> children;
+    string name;
+    t_node_data node_data;
+};
+
+
+class t_parser {
+public:
+    t_parser();
+    static constexpr t_nterm all_nterms[] = { 
+        {place_nterms_here}
+    };
+
+    node* parse(const string& data, const t_node_data& inh);
+    void print_tree(node* v, int test_num);
+
+    const map<t_token, string> code_to_text = {
+        {UNKNOWN_TOKEN, "UNKNOWN_TOKEN"},
+        {EPS, "EPS"},
+        {ENDOFSTREAM, "ENDOFSTREAM"},
+        {place_token_to_text_here}
+    };
+
+    map<t_nterm, string> nterm_to_text = {
+        {place_nterm_to_text_here}
+    };
+
+private:
+    vector<t_rule> make_grammar();
+    first_res calc_FIRST();
+    set<t_token> calc_simple_FIRST(first_res& fst, const rruleside& to, int from);
+    follow_res calc_FOLLOW();
+
+    set<t_token> g_first(t_nterm from, const rruleside& to);
+    void print_children(node* cur);
+    void traverse(node* v, stringstream& fs, int test_num, int& node_num);
+    string get_name(node* v, int& node_num);
+
+    t_lexer lexer;
+    vector<t_rule> grammar;
+    first_res FIRST;
+    follow_res FOLLOW;
+
+    {place_parse_node_decls_here}
+
+    void assertEndOfStream();
+    void ambiguous_fail(const set<t_token>& possible);
+    t_node_data process_token(node* cur, t_token expected);
+};
+
+#endif
+

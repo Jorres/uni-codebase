@@ -1,0 +1,31 @@
+alpha = (L || R) 
+
+    alpha = 1 => L = 1 или R = 1, выясним какой и сделаем вот что. Пусть L:
+    L
+    L -> (L || R)
+    (L || R)
+    alpha = 0 => го покажем not(alpha) и свалим всю работу на not
+
+
+    alpha = (L && R) 
+    alpha = 1
+    alpha = 1 => L = 1 и R = 1
+    L
+    R
+    L -> R -> (L && R)
+    (L && R)
+    alpha = 0 => го покажем not(alpha)
+
+
+    alpha = (L -> R) 
+    alpha = 1 => если R, тo R -> L -> R, L -> R
+                 если не R, то должно быть не L.
+    !L
+    !R
+    L -> R
+    ???
+
+
+    alpha = 0 => го покажем not(alpha)
+    not(alpha) - если 0, то покажем not not alpha, not not alpha -> alpha 
+    not(alpha) = 1. Надо показать alpha = 0 => not(alpha)

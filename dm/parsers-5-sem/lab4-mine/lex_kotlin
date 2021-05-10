@@ -1,0 +1,11 @@
+# Sequence of rules: token and regexp for the token
+# If you need literal strings to be matched, 
+# enclose them in single quotes
+#
+  
+FUN 'fun'
+COLON ':'
+COMMA ','
+LPAREN '('
+RPAREN ')'
+NAME [a-zA-Z][\w]* { $$->name = $matched; }

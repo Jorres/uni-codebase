@@ -1,0 +1,13 @@
+# Sequence of rules: token and regexp for the token
+# If you need literal strings to be matched, 
+# enclose them in single quotes
+#
+  
+INT [1-9][0-9]* { $$->result = std::stoi($matched); }
+MULT '*'                       
+DIV '/'
+PLUS '+'
+MINUS '-'
+LPAREN '('
+RPAREN ')'
+SCOLON ';'

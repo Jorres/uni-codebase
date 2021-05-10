@@ -1,0 +1,76 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 3946822628fcb12f380bc01e0bfc16226b84f4e7671e2586163a70ccb19af48b
+
+name:           hw2-Jorres
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/Jorres/hw2-Jorres#readme>
+homepage:       https://github.com/Jorres/hw2-Jorres#readme
+bug-reports:    https://github.com/Jorres/hw2-Jorres/issues
+author:         Jorres
+maintainer:     jorres.tarasov@gmail.com
+copyright:      2020 Jorres
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/Jorres/hw2-Jorres
+
+library
+  exposed-modules:
+      Expression
+      MovingAverage
+      NonEmpty
+      Parser
+      StringSum
+      Tree
+  other-modules:
+      Paths_hw2_Jorres
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , mtl
+  default-language: Haskell2010
+
+executable hw2-Jorres-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_hw2_Jorres
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hw2-Jorres
+  default-language: Haskell2010
+
+test-suite hw2-Jorres-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      ExpressionSpec
+      MovingAverageSpec
+      NonEmptySpec
+      ParserSpec
+      StringSumSpec
+      TreeSpec
+      Paths_hw2_Jorres
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , hspec
+    , hw2-Jorres
+  default-language: Haskell2010

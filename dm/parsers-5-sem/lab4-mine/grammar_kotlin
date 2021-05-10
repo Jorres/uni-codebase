@@ -1,0 +1,47 @@
+&& User declarations
+#include <iostream>
+#include <map>
+#include <set>
+&&
+
+%% Node structure
+    string name;
+    int result;
+%%
+
+## Grammar, describe preconditions on grammar later
+parse_start S
+
+S -> { storage.clear(); } F N LPAREN A RPAREN P { print_storage(); }
+           
+A -> EPS
+A -> O  T 
+T -> EPS
+T -> COMMA O T   
+           
+O -> N COLON N { push_to_storage($1->name, $3->name); }
+
+P -> EPS
+P -> COLON N
+           
+F -> FUN
+N -> NAME { $$->name = $1->name; }
+##
+
+== User code
+map<string, set<string>> storage;
+
+void push_to_storage(const string& name, const string& type) {
+    storage[type].insert(name);
+}
+
+void print_storage() {
+    for (const auto& p : storage) {
+        cout << p.first << " : ";
+        for (const auto& arg : p.second) {
+            cout << arg << ", ";
+        }
+        cout << endl;
+    }
+}
+==

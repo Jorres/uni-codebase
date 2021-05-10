@@ -1,0 +1,44 @@
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/package.yaml:
+  hash: 8b7b1f8536b1d443bb3d15d39b80848b7ba37a27bec2635dbb44725d6722a482
+  size: 1221
+  modtime: 1604782896
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/test/MovingAverageSpec.hs:
+  hash: 1537e77e22b315b9172a7ee9087063b49655fbafc5b50ebef4c875125421c442
+  size: 491
+  modtime: 1605467622
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/test/ExpressionSpec.hs:
+  hash: 0bbb43accd74f84110658167094ce0703aa216e5bd02b90d9359e5bbc122b7e0
+  size: 1681
+  modtime: 1608145991
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/test/NonEmptySpec.hs:
+  hash: a7ac1f53909b88e1fba034737c4cd9f9fef3d3c7da51aa957942f19be15c880d
+  size: 962
+  modtime: 1605468733
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/test/StringSumSpec.hs:
+  hash: f634252a03104ffbf28f3a3d3cfa28f53bb3b1d258186da08cca5c081d3fc644
+  size: 525
+  modtime: 1604148081
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/hw2-Jorres.cabal:
+  hash: 4788ce4d50e8586fb69fdf47148047cbacfc8b9152a340745850f2050307f372
+  size: 1730
+  modtime: 1604836521
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/ChangeLog.md:
+  hash: 72bc62185dc0bc8390e7483479edade27f0a7b8621701e3f63cc6f835f3cbcbc
+  size: 50
+  modtime: 1604145262
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/README.md:
+  hash: d7901c3d6269844895b54238a31783a9f926f596dba83d1c523a20ce4690fa18
+  size: 13
+  modtime: 1604145262
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/test/ParserSpec.hs:
+  hash: 87bfd44a2ef6c2b0dbb45dd42c6080d33b8f9da358696aaf927630d87ef6232e
+  size: 2048
+  modtime: 1605468839
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/test/Spec.hs:
+  hash: bb4c2dc1fa87d27d9dcff80fa7ee4ad43974dd0338b896dfda924c1991e48b7f
+  size: 294
+  modtime: 1604836536
+/home/jorres/work/uni-codebase/functional/hw2-Jorres/test/TreeSpec.hs:
+  hash: e89eea8b4ee396a66d9117dd8ecb52e35ed915df4065eaa934145bb80f3e5ea8
+  size: 966
+  modtime: 1604150091

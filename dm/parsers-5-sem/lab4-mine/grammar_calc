@@ -1,0 +1,32 @@
+&& User declarations
+#include <iostream>
+&&
+
+%% Node structure
+    int result;
+    int acc;
+%%
+
+## Grammar
+parse_start S
+
+S -> E SCOLON S { $$->result = $1->result; cout << "Line computed: " << $1->result << endl; }
+S -> EPS
+
+E -> T { @2->acc = $1->result; } Es { $$->result = $2->result; }
+E -> MINUS T { @3->acc = (-1) * $2->result; } Es { $$->result = $3->result; }
+Es -> PLUS T { @3->acc = @@->acc + $2->result; } Es { $$->result = $3->result; }
+Es -> MINUS T { @3->acc = @@->acc - $2->result; } Es { $$->result = $3->result; }
+Es -> EPS { $$->result = @@->acc; }
+
+T -> F { @2->acc = $1->result; } Ts { $$->result = $2->result; }
+Ts -> MULT F { @3->acc = @@->acc + $2->result; } Ts { $$->result = $3->result; }
+Ts -> DIV F { @3->acc = @@->acc / $2->result; } Ts { $$->result = $3->result; }
+Ts -> EPS { $$->result = @@->acc; }
+
+F -> INT { $$->result = $1->result; }
+F -> LPAREN E RPAREN { $$->result = $2->result; }
+##
+
+== User code
+==

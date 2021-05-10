@@ -1,0 +1,48 @@
+name:                hw1-Jorres
+version:             0.1.0.0
+github:              "Jorres/hw1-Jorres"
+license:             BSD3
+author:              "Jorres"
+maintainer:          "jorres.tarasov@gmail.com"
+copyright:           "2020 Jorres"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/Jorres/hw1-Jorres#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  hw1-Jorres-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hw1-Jorres
+
+tests:
+  hw1-Jorres-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hw1-Jorres

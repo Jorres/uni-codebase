@@ -1,0 +1,41 @@
+import sys
+import os
+import random
+
+letters = ['A', 'B', 'C']
+def generate(depth):
+    if (depth == 0):
+        return letters[random.randint(0, 2)]
+
+    op = random.randint(0, 3)
+
+    left = '(' + generate(depth - 1) + ')'
+    right = '(' + generate(depth - 1) + ')'
+
+    if op == 0:
+        return left + ' -> ' + right
+    elif op == 1:
+        return left + ' & ' + right
+    elif op == 2:
+        return left + ' | ' + right
+    else:
+        return '!(' + left + ')'
+
+    
+
+
+for _ in range(1):
+    task = generate(2)
+    print(task)
+
+    # f = open("out.txt", "w")
+    # f.write(generate(1))
+    # os.system("./a > out.txt")
+    # os.system("./tolya < out.txt > checker_out.txt")
+    # lines = open("checker_out.txt").readlines()
+    # for line in lines:
+    #     if "incorrect" in line:
+    #         print("Not OK")
+    #         break
+    #
+    #

@@ -1,0 +1,25 @@
+digraph {
+S_1 -> F_2
+F_2 -> FUN_3
+S_1 -> N_4
+N_4 -> NAME_5
+S_1 -> LPAREN_6
+S_1 -> A_7
+A_7 -> O_8
+O_8 -> NAME_9
+O_8 -> COLON_10
+O_8 -> NAME_11
+A_7 -> T_12
+T_12 -> COMMA_13
+T_12 -> O_14
+O_14 -> NAME_15
+O_14 -> COLON_16
+O_14 -> NAME_17
+T_12 -> T_18
+T_18 -> COMMA_19
+T_18 -> O_20
+O_20 -> NAME_21
+O_20 -> COLON_22
+O_20 -> NAME_23
+S_1 -> RPAREN_24
+}

@@ -1,0 +1,96 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------------< [0;36mmpp:stack-elimination[0;1m >------------------------[m
+[[1;34mINFO[m] [1mBuilding stack-elimination 2019[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mstack-elimination[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/jorres/work/parprog/stack-elimination-Jorres/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.5.1:compile[m [1m(java-compile)[m @ [36mstack-elimination[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 3 source files to /home/jorres/work/parprog/stack-elimination-Jorres/target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mkotlin-maven-plugin:1.3.50:compile[m [1m(compile)[m @ [36mstack-elimination[0;1m ---[m
+[[1;33mWARNING[m] No sources found skipping Kotlin compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32matomicfu-maven-plugin:0.12.11:transform[m [1m(default)[m @ [36mstack-elimination[0;1m ---[m
+[[1;34mINFO[m] Analyzing in /home/jorres/work/parprog/stack-elimination-Jorres/target/classes-pre-atomicfu
+[[1;34mINFO[m] Nothing to transform -- all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mstack-elimination[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/jorres/work/parprog/stack-elimination-Jorres/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.5.1:testCompile[m [1m(java-test-compile)[m @ [36mstack-elimination[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mkotlin-maven-plugin:1.3.50:test-compile[m [1m(test-compile)[m @ [36mstack-elimination[0;1m ---[m
+[[1;33mWARNING[m] No sources found skipping Kotlin compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mstack-elimination[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/jorres/work/parprog/stack-elimination-Jorres/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running stack.FunctionalTest
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL
+SPECIAL

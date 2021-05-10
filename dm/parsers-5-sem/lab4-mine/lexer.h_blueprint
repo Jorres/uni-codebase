@@ -1,0 +1,34 @@
+#ifndef LEXER_H
+#define LEXER_H
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <vector>
+#include <regex>
+
+using namespace std;
+
+enum t_token {
+    {place_tokens_here}
+    ENDOFSTREAM, 
+    EPS,
+    UNKNOWN_TOKEN,
+};
+
+class t_lexer {
+public:
+    t_lexer(string data);
+
+    pair<t_token, string> next_token();
+    pair<t_token, string> get_token() const;
+    t_token get_only_token() const;
+    size_t last_pos;
+private:
+    void skip_spaces();
+
+    t_token cur_token;
+    string cur_matched;
+    string data;
+    size_t cur_pos;
+};
+#endif 

@@ -1,0 +1,103 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a9989d32bc4135e1efaa6f73d5a6a3bf5df6b4b439c8a350b0096b61fa806583
+
+name:           hw4-Jorres
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/Jorres/hw4-Jorres#readme>
+homepage:       https://github.com/Jorres/hw4-Jorres#readme
+bug-reports:    https://github.com/Jorres/hw4-Jorres/issues
+author:         Jorres
+maintainer:     jorres.tarasov@gmail.com
+copyright:      2021 Jorres
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/Jorres/hw4-Jorres
+
+library
+  exposed-modules:
+      Comonad19
+      Geometry
+      Integrating
+  other-modules:
+      Paths_hw4_Jorres
+  hs-source-dirs:
+      src
+  build-depends:
+      ListZipper
+    , base >=4.7 && <5
+    , comonad
+    , deepseq
+    , mtl
+    , parallel
+    , random
+  default-language: Haskell2010
+
+executable hw4-Jorres-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_hw4_Jorres
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hw4-Jorres
+  default-language: Haskell2010
+
+test-suite hw4-Jorres-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Comonad19Spec
+      GeometrySpec
+      IntegratingSpec
+      Paths_hw4_Jorres
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -eventlog
+  build-depends:
+      base >=4.7 && <5
+    , comonad
+    , containers
+    , criterion
+    , hspec
+    , hspec-discover
+    , hw4-Jorres
+    , lens
+    , mtl
+    , random
+  default-language: Haskell2010
+
+benchmark hw4-Jorres-bench
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Comonad19Spec
+      GeometrySpec
+      IntegratingSpec
+      Paths_hw4_Jorres
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -eventlog
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , criterion
+    , hspec
+    , hspec-discover
+    , hw4-Jorres
+    , lens
+    , mtl
+  default-language: Haskell2010

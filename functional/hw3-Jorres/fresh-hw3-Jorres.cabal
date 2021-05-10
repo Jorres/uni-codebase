@@ -1,0 +1,78 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 46fe4e011db7f4b044fc70d7e4d753e0df984e2d3bd927354be161d49f62648b
+
+name:           fresh-hw3-Jorres
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/Jorres/fresh-hw3-Jorres#readme>
+homepage:       https://github.com/Jorres/fresh-hw3-Jorres#readme
+bug-reports:    https://github.com/Jorres/fresh-hw3-Jorres/issues
+author:         Jorres
+maintainer:     jorres.tarasov@gmail.com
+copyright:      2020 Jorres
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/Jorres/fresh-hw3-Jorres
+
+library
+  exposed-modules:
+      REPL
+  other-modules:
+      Paths_fresh_hw3_Jorres
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , containers
+    , directory
+    , filepath
+    , hspec-discover
+    , mtl
+  default-language: Haskell2010
+
+executable fresh-hw3-Jorres-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_fresh_hw3_Jorres
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , fresh-hw3-Jorres
+    , hspec-discover
+  default-language: Haskell2010
+
+test-suite fresh-hw3-Jorres-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      REPLSpec
+      Paths_fresh_hw3_Jorres
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , containers
+    , directory
+    , filepath
+    , fresh-hw3-Jorres
+    , hspec
+    , hspec-discover
+    , lens
+    , mtl
+  default-language: Haskell2010

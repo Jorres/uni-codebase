@@ -1,0 +1,90 @@
+#include <cassert>
+
+#include <map>
+#include <set>
+ 
+#include <vector>
+
+#include "parser.h"
+#include "parse_exception.h"
+
+
+{place_user_code_here}
+
+t_node_data t_parser::process_token(node* cur, t_token expected) {
+    auto ptoken = lexer.get_token(); 
+
+    auto token = ptoken.first;
+    auto matched = ptoken.second;
+
+    stringstream ss;
+    if (token != expected) {
+        ss << "Parsing failed at pos " << lexer.last_pos << endl;
+        ss << "Currently parsing " << nterm_to_text.at(get<t_nterm>(cur->data)) << endl;
+        ss << "Found: " << code_to_text.at(token) << endl;
+        ss << "Expected: " << code_to_text.at(expected) << endl;
+
+        throw parse_exception(lexer.last_pos, ss.str());
+    }
+    node* term = new node(token);
+
+    if (token == NAME) { term->node_data.name = matched; }
+
+    cur->children.push_back(term);
+    lexer.next_token();
+    return term->node_data;
+}
+
+void t_parser::ambiguous_fail(const set<t_token>& possible) {
+    stringstream ss;
+    ss << "Parsing failed at pos " << lexer.last_pos << endl;
+    ss << "Found: " << code_to_text.at(lexer.get_only_token()) << endl;
+    ss << "Expected one of the following: " << endl;
+    for (auto& possible_token : possible) {
+        ss << code_to_text.at(possible_token) << endl;
+    }
+    throw parse_exception(lexer.last_pos, ss.str());
+}
+
+t_node_data safe_append(node* v, node* res) {
+    if (res->children.size() > 0) {
+        v->children.push_back(res);
+    }
+    return res->node_data;
+}
+
+set<t_token> t_parser::g_first(t_nterm n, const rruleside& to) {
+    auto to_set = calc_simple_FIRST(FIRST, to, 0);
+    auto it = to_set.find(EPS);
+    if (it != to_set.end()) {
+        to_set.erase(it);
+        auto follow_from = FOLLOW[n]; 
+        to_set.insert(follow_from.begin(), follow_from.end());
+    }
+    return to_set;
+}
+
+bool in(t_token t, const set<t_token>& firsts) {
+    return firsts.find(t) != firsts.end(); 
+}
+
+void t_parser::print_children(node* cur) {
+    cout << nterm_to_text[get<t_nterm>(cur->data)] << " : ";
+    for (auto& v : cur->children) {
+        if (holds_alternative<t_nterm>(v->data)) {
+            cout << nterm_to_text.at(get<t_nterm>(v->data)) << " ";
+        } else {
+            cout << code_to_text.at(get<t_token>(v->data)) << " ";
+        }
+    }
+    cout << endl;
+}
+
+void t_parser::assertEndOfStream() {
+    t_token last = lexer.get_only_token();
+    if (last != ENDOFSTREAM) {
+        throw parse_exception(lexer.last_pos, "End of input expected" + code_to_text.at(last) + " found.");
+    }
+}
+
+{place_functions_here}

@@ -1,0 +1,10 @@
+cradle:
+  stack:
+    - path: "./app/"
+      component: "hw4-Jorres:exe:hw4-Jorres-exe"
+    - path: "./src/"
+      component: "hw4-Jorres:lib"
+    - path: "./test/"
+      component: "hw4-Jorres:test:hw4-Jorres-test"
+    - path: "./Setup.hs"
+      component: "Cabal"

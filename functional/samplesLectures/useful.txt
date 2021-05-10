@@ -1,0 +1,44 @@
+newtype = wrapper around field, almost costless
+
+TypeClasses ~~ interfaces
+how to compare, print?
+
+class Printable p where
+    printMe :: p -> String
+
+
+data: what does it store?
+class: what we can do with the data? what methods?
+
+instance Printable Foo where
+    printMe Foo = Foo
+
+how to require this type (constraint):
+
+helloP :: Printable p => p -> String
+helloP p = "Hello " ++ printMe p
+
+
+Famous type classes
+Eq, a -> a -> Bool (==) (/=) minimal complete definition
+Ord
+Num
+Show a -> String
+Read String -> a, readMaybe, readEither
+
+undefined = write tomorrow, typecheck today!
+error "meaningful text"
+
+but in general, everywhere you need to write an `error` is where you have a mistake in type theory
+
+
+Deriving -- Eq, Ord, Enum, Bounded, Show, Read, Ix -- derivable
+Enum supports next and prev operation
+
+
+Semigroup - have an associative operation
+Monoids are semigrous with a special dedicated zero element
+Natural numbers + zero + sum operation are monoids
+
+Foldable (reduce with gk), our type would be like a container
+Foldable 

@@ -79,3 +79,8 @@ function A(): Node {
         while token in FIRST(a) // <==> a*
             process alpha
 ```
+
+### Bison documentation details
+
+GLR - generalized LR - clones the parser when ambiguity is found, and than it can either vanish or
+get merged back with some other parser. User defined actions are recorded but executed later.
