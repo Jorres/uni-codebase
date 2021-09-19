@@ -1,0 +1,1 @@
+I can make out of bounds request when small labyrinth at the center and I'm at 6000 m. It would be 12000m.

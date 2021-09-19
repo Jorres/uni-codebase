@@ -12,7 +12,7 @@ import keras.utils as ku
 
 
 def preprocess():
-    f = open("way_station_short.txt", "r")
+    f = open("diary.txt", "r")
 
     raw_lines = f.readlines()
     proc_line = " ".join(raw_lines).replace("\n", "").replace("\"", "").replace("...", ".").lower()
