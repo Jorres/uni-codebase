@@ -1,0 +1,5 @@
+add_test( LRUTest.CheckSingleIntNoPreemption /home/jorres/work/uni-codebase/software-design/lru/cpp/build/exec [==[--gtest_filter=LRUTest.CheckSingleIntNoPreemption]==] --gtest_also_run_disabled_tests)
+set_tests_properties( LRUTest.CheckSingleIntNoPreemption PROPERTIES WORKING_DIRECTORY /home/jorres/work/uni-codebase/software-design/lru/cpp/build)
+add_test( LRUTest.CheckMultipleIntsNoPreemption /home/jorres/work/uni-codebase/software-design/lru/cpp/build/exec [==[--gtest_filter=LRUTest.CheckMultipleIntsNoPreemption]==] --gtest_also_run_disabled_tests)
+set_tests_properties( LRUTest.CheckMultipleIntsNoPreemption PROPERTIES WORKING_DIRECTORY /home/jorres/work/uni-codebase/software-design/lru/cpp/build)
+set( exec_TESTS LRUTest.CheckSingleIntNoPreemption LRUTest.CheckMultipleIntsNoPreemption)

@@ -1,0 +1,4 @@
+LRUTest.CheckSingleIntNoPreemption 4 0.000471154
+LRUTest.CheckMultipleIntsNoPreemption 0 0
+---
+LRUTest.CheckMultipleIntsNoPreemption

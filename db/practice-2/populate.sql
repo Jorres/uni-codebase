@@ -1,11 +1,4 @@
-drop table Students cascade;
-drop table Groups cascade;
-drop table Marks cascade;
-drop table Subjects cascade;
-drop table GroupHasSubjects cascade;
-drop table Teachers cascade;
-drop table TeacherTeachesSubjects cascade;
-
+drop table Students, Groups, Marks, Subjects, GroupHasSubjects, TeacherTeachesSubjects, Teachers cascade;
 /* tables */
 create table Students (
     studentId int not null,
@@ -99,13 +92,13 @@ alter table Students
     deferrable initially immediate;
 
 alter table Groups 
-    add constraint studentWitness
+    add constraint groupsToStudentWitnessFK
     foreign key (groupId, studentWitness) 
     references Students (groupId, studentId)
     deferrable initially immediate;
 
 alter table Groups 
-    add constraint subjectWitness
+    add constraint groupToSubjectWitnessFK
     foreign key (groupId, subjectWitness) 
     references GroupHasSubjects (groupId, subjectId)
     deferrable initially immediate;
@@ -121,13 +114,13 @@ alter table Marks
     references Subjects (subjectId);
 
 alter table Subjects 
-    add constraint groupWitness
+    add constraint subjectsToGroupWitnessFK
     foreign key (subjectId, groupWitness) 
     references GroupHasSubjects (subjectId, groupId)
     deferrable initially immediate;
 
 alter table Subjects 
-    add constraint teacherWitness
+    add constraint subjectsToTeacherWitnessFk
     foreign key (subjectId, teacherWitness) 
     references TeacherTeachesSubjects (subjectId, teacherId)
     deferrable initially immediate;
@@ -145,7 +138,7 @@ alter table GroupHasSubjects
     deferrable initially immediate;
 
 alter table Teachers 
-    add constraint subjectWitness
+    add constraint teachersToSubjectWitnessFK
     foreign key (teacherId, subjectWitness) 
     references TeacherTeachesSubjects (teacherId, subjectId)
     deferrable initially immediate;
@@ -162,31 +155,30 @@ alter table TeacherTeachesSubjects
     references Teachers (teacherId)
     deferrable initially immediate;
 
-
 /* We're using transaction to insert entries that have mutually 
-   dependant foreign keys. PostgreSQL checks constraints on transaction 
-   end only, we only need to append deferrable policy `initially deferred` 
-   to constraints that would have conflicted. 
+   dependant foreign keys. PostgreSQL has `no deferrable` policy
+   by default, we only need to append deferrable policy `initially immediate` 
+   to constraints that would have conflicted and override them using `set constraints`. 
 
    I think that using transactions is the best idea here, because 
    it is almost the same as the financial transaction - in no time you 
    can have an empty group OR a student without a group. You can have only 
    both or nothing. */
+
 start transaction;
 
 set constraints 
     studentBelongsToGroupFK,
-    studentWitness,
-    subjectWitness,
-    groupWitness,
-    teacherWitness,
+    groupsToStudentWitnessFk,
+    groupToSubjectWitnessFK,
+    subjectsToGroupWitnessFK,
+    subjectsToTeacherWitnessFK,
     linkGroupSubjectToSubjectFK,
     linkGroupSubjectToGroupFK,
-    subjectWitness,
+    teachersToSubjectWitnessFK,
     linkTeacherSubjectToSubjectFK,
     linkTeacherSubjectToTeacherFK
     deferred;
-
 
 insert into Students 
     (studentId, studentName, birthDate, groupId) 

@@ -1,0 +1,77 @@
+Start testing: Sep 22 01:31 MSK
+----------------------------------------------------------
+1/2 Testing: LRUTest.CheckSingleIntNoPreemption
+1/2 Test: LRUTest.CheckSingleIntNoPreemption
+Command: "/home/jorres/work/uni-codebase/software-design/lru/cpp/build/exec" "--gtest_filter=LRUTest.CheckSingleIntNoPreemption" "--gtest_also_run_disabled_tests"
+Directory: /home/jorres/work/uni-codebase/software-design/lru/cpp/build
+"LRUTest.CheckSingleIntNoPreemption" start time: Sep 22 01:31 MSK
+Output:
+----------------------------------------------------------
+Running main() from /home/jorres/work/uni-codebase/software-design/lru/cpp/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = LRUTest.CheckSingleIntNoPreemption
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LRUTest
+[ RUN      ] LRUTest.CheckSingleIntNoPreemption
+[       OK ] LRUTest.CheckSingleIntNoPreemption (0 ms)
+[----------] 1 test from LRUTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"LRUTest.CheckSingleIntNoPreemption" end time: Sep 22 01:31 MSK
+"LRUTest.CheckSingleIntNoPreemption" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: LRUTest.CheckMultipleIntsNoPreemption
+2/2 Test: LRUTest.CheckMultipleIntsNoPreemption
+Command: "/home/jorres/work/uni-codebase/software-design/lru/cpp/build/exec" "--gtest_filter=LRUTest.CheckMultipleIntsNoPreemption" "--gtest_also_run_disabled_tests"
+Directory: /home/jorres/work/uni-codebase/software-design/lru/cpp/build
+"LRUTest.CheckMultipleIntsNoPreemption" start time: Sep 22 01:31 MSK
+Output:
+----------------------------------------------------------
+Running main() from /home/jorres/work/uni-codebase/software-design/lru/cpp/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = LRUTest.CheckMultipleIntsNoPreemption
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LRUTest
+[ RUN      ] LRUTest.CheckMultipleIntsNoPreemption
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+/home/jorres/work/uni-codebase/software-design/lru/cpp/spec.cpp:29: Failure
+Value of: lru.present(6)
+  Actual: false
+Expected: true
+wrong key 6
+
+[  FAILED  ] LRUTest.CheckMultipleIntsNoPreemption (0 ms)
+[----------] 1 test from LRUTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] LRUTest.CheckMultipleIntsNoPreemption
+
+ 1 FAILED TEST
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Failed.
+"LRUTest.CheckMultipleIntsNoPreemption" end time: Sep 22 01:31 MSK
+"LRUTest.CheckMultipleIntsNoPreemption" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 22 01:31 MSK

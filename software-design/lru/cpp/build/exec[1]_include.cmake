@@ -1,0 +1,5 @@
+if(EXISTS "/home/jorres/work/uni-codebase/software-design/lru/cpp/build/exec[1]_tests.cmake")
+  include("/home/jorres/work/uni-codebase/software-design/lru/cpp/build/exec[1]_tests.cmake")
+else()
+  add_test(exec_NOT_BUILT exec_NOT_BUILT)
+endif()
