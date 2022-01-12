@@ -1,0 +1,12 @@
+select 
+    TeamId, count(*) as Opened
+from (
+    select distinct
+        TeamId, ContestId, Letter
+    from
+        Sessions as S natural join Runs
+    where
+        S.TeamId = TeamId
+) as q
+group by
+    TeamId;

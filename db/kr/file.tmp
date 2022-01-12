@@ -1,0 +1,9 @@
+AllSuccessfulOnTask(SessionId, Letter) :- 
+    Runs(RunId, SessionId, Letter, _, 1).
+HasSomeFailed(ContestId, Letter) :-
+    Sessions(SessionId, _, ContestId, _),
+    Problems(ContestId, Letter, _),
+    not AllSuccessfulOnTask(SessionId, Letter).
+r(ContestId, Letter) :- 
+    Problems(ContestId, Letter, _),
+    not HasSomeFailed(ContestId, Letter).

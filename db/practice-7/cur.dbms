@@ -1,0 +1,20 @@
+create view StudentDebts as
+select 
+    Students.StudentId, (
+        select
+            count(distinct Plan.CourseId) as Debts
+        from 
+            Plan
+        where
+            CourseId not in (
+                select 
+                    CourseId
+                from 
+                    Marks
+                where
+                    Students.StudentId = Marks.StudentId
+            ) and
+            Students.GroupId = Plan.GroupId 
+    ) as Debts    
+from
+    Students;

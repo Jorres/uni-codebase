@@ -1,0 +1,69 @@
+select 
+    StudentName, CourseName
+from
+    Students, Plan, Courses
+where
+    Students.GroupId = Plan.GroupId and
+    Courses.CourseId = Plan.CourseId and 
+    not Students.StudentId in (
+        select distinct
+            IStudents.StudentId
+        from
+            Students as IStudents, Plan as IPlan, Marks
+            
+        where
+            IStudents.GroupId = IPlan.GroupId and 
+            Marks.StudentId = IStudents.StudentId and 
+            IPlan.CourseId = Marks.CourseId and
+            Courses.CourseId = Marks.CourseId
+    );
+
+
+fun things:
+    D, C for delete and change till the end of line
+    modify and read macros, they are just stored in registers
+    recursive macros, no more 9999@q, https://vim.fandom.com/wiki/Record_a_recursive_macro
+    posttraumatic macro disorder
+
+    treesitter might be amazing for coding plugins
+    look at harpoon to observe a structure of a small nvim plugin
+    or at telescope to observe a structure of a larger plugin
+
+    my personal interests are purchasing two to three domain names
+    on every project I do not start
+
+    vim.help, read the user manual in its entirety
+
+    work = !sh -c 'git fetch && git checkout @{upstream} -tb \"$@\"'
+    git config branch.autosetuprebase=true
+    pull.rebase=true
+    .gitmessage
+    :help fugitive, g?
+
+    cc => cvc, cva
+
+
+    G blame, and then hit minus on some commit => that reblames the entire file to that commit
+    gq or Gedit to get back from git bowels
+    press also "o" on the commit
+    A - authors
+    D - date
+    C - to just the sha
+
+    also change telescope to vertical stack instead of horizontal stack
+    `sad` batch rename edits
+    justin m keyes `we can have nice things`
+
+    enable snippets
+
+    take into account cultural factors (human factors) when you write plugin. For example, fuzzy finder supports  
+    people making typos! Computers are good, meatbags are bad and you have to design for meatbags almost all the time!
+
+    understand what tool they used to make presentations and use it to repeat through your lectures and stuff!!!
+    tj why lua
+    
+    kitty terminal? alacrity?
+    kitty config jess archer
+    vim config by jess archer is actually really cool as werll, remap <gv
+
+    jess archer managed to use floatterm to be persistent!
